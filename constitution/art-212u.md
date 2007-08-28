@@ -1,0 +1,5 @@
+# Article 212U
+(1) The Rights of the Child Commission shall promote initiatives that reflect and enhance the well-being and rights of the child.
+(2) The Rights of the Child Commission shall consist of persons from each of the categories referred to in subparagraphs (a) and (b) appointed by the President as follows -
+(a) not less than five nor more than fifteen members, with expertise in issues affecting children, nominated by entities, by a consensual mechanism determined by the National Assembly, after the entities which shall include the Ministry with responsibility for children's affairs, the Ministry of Education, and organisations representing the interests of youth, are determined by the votes not less than two-thirds of all elected members of the National Assembly; and
+(b) a member who shall be a nominee, without the right to vote, chosen by and from each of the following commissions: the Human Rights Commission, Ethnic Relations Commission, Women and Gender Equality Commission and Indigenous Peoples' Commission.
