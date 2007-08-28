@@ -1,0 +1,2 @@
+# Article 119C
+There shall be a standing committee of the National Assembly which shall have responsibility for initiating or otherwise taking such action or addressing such matters as may be entrusted to the Committee by the National Assembly in respect of functions required to be discharged by the Assembly under the Constitution in relation to the appointment of a member of a Commission established under the Constitution.
