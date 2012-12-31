@@ -1,5 +1,5 @@
 # Article 212P
-(1) Each Commission established under article 212G.(1) shall appoint on such terms and conditions as may be approved by the National Assembly, a Chief Executive Officer (who shall serve as its Secretary), and the secretary and assistants to the Chief Executive Officer.
+(1) Each Commission established under article 212G(1) shall appoint on such terms and conditions as may be approved by the National Assembly, a Chief Executive Officer (who shall serve as its Secretary), and the secretary and assistants to the Chief Executive Officer.
 (2) The Human Rights Commission shall be responsible for the efficient functioning of the Secretariat of the Commissions, which shall comprise -
 (a) the Chief Executive Officers of the Commissions who shall be Directors in the Secretariat;
 (b) the secretaries and assistants to the Chief Executive Officers; and

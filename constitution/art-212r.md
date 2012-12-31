@@ -1,5 +1,6 @@
 # Article 212R
-In addition to the functions specified in article 212J(2), the functions of the Women and Gender Equality Commission are to (a) promote the issues related to the enhancement of the status of women, girls and gender issues;
+In addition to the functions specified in article 212J(2), the functions of the Women and Gender Equality Commission are to -
+(a) promote the issues related to the enhancement of the status of women, girls and gender issues;
 (b) promote the integration of women's needs and interests and mainstreaming of gender issues;
 (c) promote the empowerment of women;
 (d) promote women's rights as human rights;

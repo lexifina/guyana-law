@@ -1,5 +1,6 @@
 # Article 212D
-The functions of the Ethnic Relations Commission are to (a) provide equality of opportunity between persons of different ethnic groups and to promote harmony and good relations between such persons;
+The functions of the Ethnic Relations Commission are to -
+(a) provide equality of opportunity between persons of different ethnic groups and to promote harmony and good relations between such persons;
 (b) promote the elimination of all forms of discrimination on the basis of ethnicity;
 (c) discourage and prohibit persons, institutions, political parties and associations from indulging in, advocating or promoting discrimination or discriminatory practices on the ground of ethnicity;
 (d) foster a sense of security among all ethnic groups by encouraging and promoting the understanding, acceptance and tolerance of diversity in all aspects of national life and promoting full participation by all ethnic groups in the social, economic, cultural and political life of the people;
@@ -18,7 +19,7 @@ The functions of the Ethnic Relations Commission are to (a) provide equality of 
 (q) identify and analyse factors inhibiting the attainment of harmonious relations between ethnic groups, particularly barriers to the participation of any ethnic group in social, economic, commercial, financial, cultural and political endeavours and recommend to the National Assembly and any other relevant public or private sector bodies how these factors should be overcome;
 (r) monitor and report to the National Assembly on the status and success of implementation of its recommendations;
 (s) study and make recommendations to the National Assembly on any issue relating to ethnic affairs, including conducting studies to determine whether race relations are improving;
-(t) monitor and make recommendations to the National Assembly and other relevant public and private sector bodies on factors inhibiting the development of harmonious relations between ethnic groups and on barriers to the participation of all ethnic groups in social economic, commercial, financial, cultural and political life of the people;
+(t) monitor and make recommendations to the National Assembly and other relevant public and private sector bodies on factors inhibiting the development of harmonious relations between ethnic groups and on barriers to the participation of all ethnic groups in social, economic, commercial, financial, cultural and political life of the people;
 (u) consult with other bodies and persons to determine and specify the perceived needs of various ethnic groups for the fostering of the harmonious relations;
 (v) train and enlist the aid of such persons and acquire such facilities as the Commission deems necessary to accomplish its functions;
 (w) make recommendations on penalties, including the prevention of any political party or any person from participating in elections for a specified period, to be imposed for any breach of the provisions of this Constitution or any law dealing with ethnicity;
