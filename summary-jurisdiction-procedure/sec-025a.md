@@ -1,0 +1,4 @@
+# Section 25A
+Without prejudice to any other provision of this Act, where a defendant absents himself or seeks to absent himself from trial on the ground of illness the court may order him to submit himself for examination by a registered medical practitioner designated by the court in order to determine whether or not he is fit to attend the trial and thereafter the court may proceed with the trial in the absence of the defendant if -
+(a) he does not submit himself for the examination; or
+(b) the court, having considered the report of the examination, together with any other report of any registered medical practitioner tendered by the defendant and, if necessary, the testimony on oath of any registered medical practitioner, is satisfied that the defendant is capable of attending the trial.
