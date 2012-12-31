@@ -1,0 +1,53 @@
+SECOND SCHEDULE
+FEES $ c.
+1. On the first registration 60.00 for the first $500 or part thereof ... for every $500 or part thereof- 30.00 in excess of $500 up to 2,500... 12.00 in excess of $2,500 up to $5,000 ... 6.00 in excess of $5,000 ...
+Provided that -
+(a) on first registration in the name of the
+State or any statutory body, no fee shall be payable;
+(b) on first registration with an absolute title under section 68, or by any person passing a transport to himself under section 43, or following an order or judgment of the Court under section 44, or following a sale in execution under section 45, there shall be payable one half of the prescribed fee;
+(c) where a fee on first registration has been prescribed in the order designating any registration area, such fee shall be payable in lieu of the prescribed fee;
+(d) on first registration pursuant to the District Lands Partition and Re-allotment Act the fee prescribed in that Act shall be payable in lieu of the prescribed fee.
+2. By way of contribution to the Assurance Fund -
+(a) on first registration of land under this Act -
+one-fifth of one per cent of the value of the land together with such additional contribution as the Commissioner may under section 41 direct:
+Provided that in the case referred to in provisos (a), (b) and (d) of item 1 of this Schedule, no fee by way of contribution to the Assurance Fund shall be payable:
+(b) on registration of any transfer for value of land held under an absolute title -
+one-tenth of one per cent of the value of land or consideration;
+(c) on registration of a transfer for value, or any mortgage, charge, lease, or transmission of any land held under a provisional title -
+one fifth of one per cent of the value of the land:
+Provided that where a contribution has been paid upon transmission to any person in a fiduciary capacity, no contribution shall be payable upon a transfer by the fiduciary to any person beneficially entitled.
+3. On presentation for registration of -
+(a) a transfer of land on sale-one-quarter of one per cent of the value of the land or the sum of one hundred dollars whichever is the greater:
+Provided that where such transfer is registered pursuant to any agreement protected by a registered caveat, the above fee shall be reduced by the amount of the fee paid in respect of the caveat.
+(b) any other transfer or a transmission...
+(c) a mortgage or charge-one-tenth of one per cent of the amount secured or the value of the charge as the case may be, or one hundred dollars whichever is the greater:
+Provided that where such mortgage or charge is registered pursuant to an agreement protected by a registered caveat or by the registered deposit of a certificate of title, the above fee shall be reduced by the amount of the fee paid in respect of the caveat or notice of deposit.
+(d) a lease - where the lease is not required to be registered... where the term of the lease does not exceed twenty years... in any other case...
+(e) a judgement...
+(f) a writ of execution -
+a writ of execution -
+if issued in pursuance of a registered judgment... in any other case ...
+(g) a caveat -
+if entered to protect an agreement for sale or an agreement to mortgage or charge any land -
+one half of the fee payable on the transaction protected; in any other case...
+(h) a notice of deposit of a certificate of title -
+one half of the fee payable on a mortgage equal in value to the sum secured.
+(i) an easement or restrictive covenant -
+if entered in the register of one dominant and one servient parcel ... for every further parcel ...
+(j) any other instrument or document capable of registration for which no fee is provided...
+4. Upon the discharge of a mortgage or charge, the surrender or determination of a lease, the withdrawal of a caveat or notice of deposit or the removal from the register at the request of the person presenting the same of the memorial of any judgment, writ or other matter...
+5. Upon registration of a declaration of title by adverse possession -
+as upon first registration.
+6. Upon presentation of any application, counter application, objection, notice or request for which no fee is provided, and for the withdrawal of the same ...
+7. Upon the issue of -
+(a) a certificate of title -
+where the value of the land does not exceed $5,000... in every other case ...
+(b) a search certificate -
+where a stay of registration is made... in every other case...
+(c) a certificate as required by section 147 ...
+8. (a) For every rectification of the register...
+Provided that no fee shall be payable where the rectification is necessitated by any error or omission of the Registrar.
+(b) on an inspection of the register, for each parcel...
+(c) for copies of documents (exclusive of plans)- certified, per folio of 100 words ... uncertified, per folio of 100 words...
+(d) on any other inspection or search in the land registry
+9. On appointment as sworn valuer
