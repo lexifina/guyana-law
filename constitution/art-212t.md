@@ -2,7 +2,7 @@
 In addition to the functions specified in article 212J(2) the functions of the Indigenous Peoples' Commission are to -
 (a) promote and protect the rights of the indigenous peoples;
 (b) raise awareness of the contribution of, and problems faced by, indigenous peoples;
-(c) promote empowerment of the indigenous peoples, especially with regard to the village council in the local government system and the scope and authority of the Council of Toushaos;
+(c) promote empowerment of the indigenous peoples, especially with regard to the village council in the local government system and the scope and authority of the Council of Toshaos;
 (d) make recommendations on economic and education policies to advance the interest of the indigenous peoples;
 (e) make recommendations for the protection, preservation and promulgation of the cultural heritage and language of the indigenous peoples;
 (f) promote consultation and cooperation with indigenous peoples especially with regard to their participation in national decision-making and other decisions that affect their lives;

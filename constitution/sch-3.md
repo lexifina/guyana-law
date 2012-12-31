@@ -1,4 +1,5 @@
 THIRD SCHEDULE
+ENTITIES
 The Ethnic Relations Commission
 The Human Rights Commission
 The Women and Gender Equality Commission
