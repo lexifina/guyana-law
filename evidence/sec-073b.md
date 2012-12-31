@@ -1,0 +1,5 @@
+# Section 73B
+(1) A requirement by or under any written law that a person shall appear or be brought or be present before a Court is taken to be satisfied if the person appears before the Court by way of an audio visual link pursuant to an order made under section 73(A)(1).
+(2) Any requirement of law for the presence of a person or entitlement of a person under any written law for a person to be present in proceeding before a Court concerning bail is taken to be satisfied if audio visual link is used in relation to the person pursuant to an order made under section 73A(1).
+(3) Any entitlement of a person under section 24 of the Court of Appeal Act to be present in proceedings on the hearing of an appeal is taken to be satisfied if audio visual link approved by the Court of Appeal is used in relation to the person.
+(4) A Court may allow a person in custody to be produced before the Court by way of audio visual link from the place of detention and such production shall be deemed to be a production or appearance of the person in custody before the Court as required under any law.
