@@ -16,3 +16,4 @@ The Public Service Appellate Tribunal
 The Public Procurement Commission
 The Office of the Ombudsman
 The Guyana Elections Commission (GECOM)
+The Parliament Office
