@@ -6,7 +6,7 @@ The functions of the Ethnic Relations Commission are to -
 (d) foster a sense of security among all ethnic groups by encouraging and promoting the understanding, acceptance and tolerance of diversity in all aspects of national life and promoting full participation by all ethnic groups in the social, economic, cultural and political life of the people;
 (e) promote educational and training programmes and research projects which provide for and encourage ethnic peace and harmony;
 (f) encourage and create respect for religious, cultural and other forms of diversity in a plural society;
-(g) promote arbitration, conciliation, meditation and like forms of dispute resolution in order to secure ethnic harmony and peace;
+(g) promote arbitration, conciliation, mediation and like forms of dispute resolution in order to secure ethnic harmony and peace;
 (h) establish mechanisms and procedures for arbitration, conciliation, mediation and like forms of dispute resolution that would ensure ethnic harmony and peace;
 (i) recommend to the National Assembly criteria to be considered for the purposes of deciding whether any person has committed acts of discrimination on the ground of ethnicity;
 (j) investigate complaints of racial discrimination and make recommendations on the measure to be taken if such complaints are valid, and where there is justification therefor, refer matters to the Human Rights Commission or other relevant authorities for further action to be taken;
@@ -14,7 +14,7 @@ The functions of the Ethnic Relations Commission are to -
 (l) immediately report to the National Assembly and to all relevant authorities any proposed legislation which the Commission thinks may be contrary to the constitutional provisions relating to ethnicity;
 (m) promote equal access by persons of all ethnic groups to all public or other services and facilities provided by the Government or other bodies;
 (n) promote and encourage the acceptance and respect by all segments of the society of the social identity and cultural inheritance of all ethnic groups;
-(o) promote cooperation between all bodies concerned with the fostering of harmonious ethnic relations;
+(o) promote co-operation between all bodies concerned with the fostering of harmonious ethnic relations;
 (p) investigate on its own accord or on request from the National Assembly or any other body any issues affecting ethnic relations;
 (q) identify and analyse factors inhibiting the attainment of harmonious relations between ethnic groups, particularly barriers to the participation of any ethnic group in social, economic, commercial, financial, cultural and political endeavours and recommend to the National Assembly and any other relevant public or private sector bodies how these factors should be overcome;
 (r) monitor and report to the National Assembly on the status and success of implementation of its recommendations;

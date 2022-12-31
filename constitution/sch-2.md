@@ -5,7 +5,7 @@ SECOND SCHEDULE
 4. The National Pledge
 THE NATIONAL FLAG
 THE GOLDEN ARROWHEAD
-The heraldic description of the Guyana Flag - known as the "Golden Arrowhead" - presented by the Garter King of Arms from the Royal College of Arms, England, reads as follows -
+The heraldic description of the Guyana Flag, known as the "Golden Arrowhead" presented by the Garter King of Arms from the Royal College of Arms, England, reads as follows -
 "Vert upon a pile throughout issuant from the dexter or, fimbriated argent; white upon a pile gules fimbriated sable, upon the same base".
 The design and the colour of Guyana Flag are interpreted as follows -
 The green background symbolises the agricultural and forested nature of Guyana.
@@ -17,10 +17,9 @@ The Flag is designed to be of a proportion 3* 5 on land and 1* 2 at sea.
 The colour proportions are:
 green 50" gold 24" white 67" and black 1".
 GUYANA COAT-OF-ARMS
-The design of Guyana's Coat of Arms is interpreted as follows: -
+The design of Guyana's Coat of Arms is interpreted as follows -
 The Amerindian head-dress, the Cacique Crown, symbolises the Amerindians as the indigenous people of the country.
-The two diamonds at the sides of the head-dress represent the country's mining industry.
-The helmet, on which the Cacique Crown rests, is the monarchical insignia.
+The two diamonds at the sides of the head-dress represent the country's mining industry. The helmet, on which the Cacique Crown rests, is the monarchical insignia.
 The two jaguars rampant, holding a pick-axe, a sugar cane, and a stalk of rice, symbolise labour and the two main agricultural industries of the country, sugar and rice.
 The shield which is decorated with the national flower, the Victoria Regia Lily, is to protect the nation.
 The three blue wavy barrulets represent the three great rivers and many waters of Guyana.
