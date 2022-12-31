@@ -1,0 +1,3 @@
+# Section 20A
+(1) A power of attorney shall not be registered, filed or recorded in the Deeds Registry unless it has attached to it, as specified in section 2A of the Powers of Attorney Act, photocopies of the two photograph identification documents of the donor and donee and the separate witness statement in the case of a power of attorney executed out of Guyana, which have been certified, signed and sealed or stamped by a Public Notary or Magistrate before whom the power of attorney was executed.
+(2) A person who registers, files or records a document purporting to be a power of attorney in contravention of subsection (1) commits an offence and is liable on summary conviction to a fine of five million dollars and to imprisonment for five years.
