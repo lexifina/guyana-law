@@ -1,7 +1,7 @@
 # Article 215A
 (1) Parliament may, by law, provide for the establishment of a Public Service Appellate Tribunal (hereafter in this article referred to as the "Tribunal") consisting of a chairman and such number of other members, being not less than two, as may be provided by that law.
 (2) The chairman of the Tribunal shall be appointed by the President by instrument in writing and shall be a person who -
-(a) holds or has held the office of a Judge of the Court of Appeal; or
+(a) holds or has held the office of Judge of the Court of Appeal; or
 (b) is qualified to be appointed as a Judge of the Court of Appeal and holds or has held the office of a Judge of the High Court.
 (3) A person shall be disqualified for appointment as a member of the Tribunal if he or she is a member of the Public Service Commission, the Teaching Service Commission or the Police Service Commission or is a public officer.
 (4) A person shall not, while he or she holds the office of a member of the Tribunal or within a period of three years commencing with the date on which he or she last held that office, be eligible for appointment to, or act in, any office power to make appointments to which is vested by this Constitution in -
