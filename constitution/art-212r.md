@@ -11,6 +11,6 @@ In addition to the functions specified in article 212J(2), the functions of the 
 (i) evaluate any system of personal and family law, customs and practices or any law likely to affect gender equality or the status of women and make recommendations to the National Assembly with regard thereto;
 (j) recommend and promote the implementation of legislation and the formulation of policies and measures so as to enhance and protect the status of women;
 (k) promote, initiate or cause to be carried out research and the creation of databases on women and gender related issues including those of health, especially reproductive health, violence against women and the family, and their socio-economic and political status, as the Commission may deem relevant or as may be referred to it by the National Assembly;
-(l) promote consultation and cooperation with women's organisations in relation to decision-making that affects the lives of women;
+(l) promote consultation and co-operation with women's organisations in relation to decision-making that affects the lives of women;
 (m) recommend training and technical assistance to support initiatives by and for women and girls; and
 (n) promote the participation of women in national decision-making.

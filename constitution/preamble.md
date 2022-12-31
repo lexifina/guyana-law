@@ -1,6 +1,6 @@
 # Preamble
 WE, THE GUYANESE PEOPLE,
-Proud heirs of the indomitable will of our forebears, in a spirit of reconciliation and cooperation, proclaim this Constitution in order to:
+Proud heirs of the indomitable will of our forebears, in a spirit of reconciliation and co-operation, proclaim this Constitution in order to:
 Safeguard and build on the rich heritage, won through tireless struggle, bequeathed us by our forebears;
 Affirm our sovereignty, our independence and our indissolubility;
 Forge a system of governance that promotes concerted effort and broad-based participation in national decision-making in order to develop a viable economy and a harmonious community based on democratic values, social justice, fundamental human rights, and the rule of law;
