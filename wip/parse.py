@@ -228,7 +228,7 @@ def compare():
 
 # ------------------------------------------------------------------ units as files
 
-PLACEHOLDER = re.compile(r'^\[[^\[\]]*\brepealed\b[^\[\]]*\]\.?$', re.I)
+PLACEHOLDER = re.compile(r'^\[?[^\[\]]*\b(repealed|Repeated)\b[^\[\]]*\]?\.?$', re.I)
 SCHED_REF = re.compile(r'^Articles? [0-9A-Z]+(?:\(\d+\))?(?:(?:,| and) ?[0-9A-Z]+(?:\(\d+\))?)*$')
 SCHED_NAMES = {1: 'First Schedule', 2: 'Second Schedule', 3: 'Third Schedule', 4: 'Fourth Schedule'}
 
