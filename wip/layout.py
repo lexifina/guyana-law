@@ -14,6 +14,7 @@ import fitz  # PyMuPDF
 
 import fetch
 
+RUNNING_RE = re.compile(r'^(\d+ )?(LAWS OF ?GUYANA|(Constitution(?: of the Co-operative Republic of Guyana)? )?Cap\. ?1 ?: ?01( Constitution(?: of the Co-operative Republic of Guyana)?)?( \d+)?)$')
 FOOT_RE = re.compile(r'^\s*\d\s*/\s*2\s*0\s*\d\s*\d\s*$')
 CITE_ONLY = re.compile(r'^\[[^\[\]]*\d{4}[^\[\]]*\]$')
 
@@ -112,13 +113,13 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         br = x1s[int(0.9 * (len(x1s) - 1))]   # the justified right edge (a few lines overrun it)
         body, margin = [], []
         for s in spans:
-            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or s[0] >= br - 1.5):
+            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or s[0] >= br - 1.5 or s[2] > br + 20 or s[0] < bl - 20):
                 margin.append(s)
             else:
                 body.append(s)
         for r in _rows(body):
             text = norm(_join(r), ed).strip()
-            if not text:
+            if not text or RUNNING_RE.match(text):
                 continue
             x0 = r[0][0]
             x1 = max(s[2] for s in r)
@@ -192,6 +193,7 @@ HEAD_RE = re.compile(r"^[A-Z0-9 ,.'\-()&:;\"]+$")
 
 
 def _is_heading(t: str) -> bool:
+    t = t.replace(' etc.', '')
     letters = [c for c in t if c.isalpha()]
     return bool(letters) and HEAD_RE.match(t) is not None and not re.match(r'^\(?\d+[A-Z]*\)?\s*\.', t)
 

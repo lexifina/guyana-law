@@ -139,6 +139,10 @@ def tidy(line: str) -> str:
     line = re.sub(r'\[\s+', '[', line)
     line = re.sub(r'\s*-$', ' -', line)          # "shall-" / "shall -" / "shall—": one form for a closing dash
     line = re.sub(r'^\((\d+[A-Z]*|[a-z]{1,4})\)(?=[A-Za-z])', r'(\1) ', line)   # "(1)Any" -> "(1) Any"
+    line = re.sub(r'(?<=.)(\(\w{1,4}\)) (?=\(\w{1,4}\))', r'\1', line)   # "(3) (a)" -> "(3)(a)" (not at line start)
+    line = re.sub(r'(\d[A-Z]{0,2}) (\(\w{1,4}\))', r'\1\2', line)          # "article 60 (2)" -> "article 60(2)"
+    line = re.sub(r'([a-z])- ([a-z])', r'\1-\2', line)                       # "co- operative" -> "co-operative"
+    line = re.sub(r'\.{4,}', '...', line)                                     # dotted fill-in lines in forms
     return line
 
 
@@ -148,12 +152,47 @@ def read_all() -> dict[str, tuple[dict, dict]]:
         out[ed] = segment(layout.read_edition(url, ed, a, b, bm))
     texts = [l for u, _ in out.values() for ls in u.values() for l in ls]
     plain, hyph = vocabulary(texts)
+    # words printed in at least two editions: the vocabulary used to split words a PDF glued together
+    seen: dict[str, int] = {}
+    for u, _ in out.values():
+        for w in vocabulary([l for ls in u.values() for l in ls])[0]:
+            seen[w] = seen.get(w, 0) + 1
+    known = {w for w, n in seen.items() if n >= 2}
     unknown: list[str] = []
     for ed, (u, m) in out.items():
         for k in u:
-            u[k] = [tidy(unhyphen(l, plain, hyph, unknown)) for l in u[k]]
+            # only the 2010 PDF glues words together; the revised editions print real compounds ("sociocultural")
+            u[k] = [tidy(degl(unhyphen(l, plain, hyph, unknown), known) if ed == 'e2010' else
+                         unhyphen(l, plain, hyph, unknown)) for l in u[k]]
             u[k] = [l for l in u[k] if l]
     return out
+
+
+def _segment_word(w: str, known: set) -> list[str] | None:
+    lw = w.lower()
+    best: list = [None] * (len(lw) + 1)
+    best[0] = []
+    for i in range(1, len(lw) + 1):
+        for j in range(max(0, i - 25), i):
+            piece = lw[j:i]
+            if best[j] is not None and piece in known and (len(piece) >= 2 or piece == 'a'):
+                cand = best[j] + [(j, i)]
+                if best[i] is None or len(cand) < len(best[i]):
+                    best[i] = cand
+    if best[-1] is None or len(best[-1]) < 2:
+        return None
+    return [w[a:b] for a, b in best[-1]]
+
+
+def degl(line: str, known: set) -> str:
+    """Split words the PDF printed without spaces ("performthefunctions") into words seen in other editions."""
+    def fix(m):
+        w = m.group(0)
+        if len(w) < 5 or w.lower() in known:
+            return w
+        parts = _segment_word(w, known)
+        return ' '.join(parts) if parts else w
+    return re.sub(r'[A-Za-z]+', fix, line)
 
 
 def compare():
