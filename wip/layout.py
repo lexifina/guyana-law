@@ -63,11 +63,21 @@ def _spans(page) -> list[tuple]:
 
 
 def _rows(spans: list[tuple], tol: float = 3.0) -> list[list[tuple]]:
-    spans = sorted(spans, key=lambda s: (s[3], s[0]))
+    """Group spans into printed lines by baseline. Superscripts ("25th") join the line they sit on."""
+    big = sorted([s for s in spans if s[4] >= 8], key=lambda s: (s[3], s[0]))
+    small = sorted([s for s in spans if s[4] < 8], key=lambda s: (s[3], s[0]))
     rows: list[list[tuple]] = []
-    for s in spans:
+    for s in big:
         for r in rows:
-            if abs(r[0][3] - s[3]) <= tol or (s[4] < 8 and r[0][1] - 1 <= s[3] <= r[0][3] + 1):
+            if abs(r[0][3] - s[3]) <= tol:
+                r.append(s)
+                break
+        else:
+            rows.append([s])
+    for s in small:
+        mid = (s[1] + s[3]) / 2
+        for r in rows:
+            if min(x[1] for x in r) - 1 <= mid <= max(x[3] for x in r) + 1:
                 r.append(s)
                 break
         else:
@@ -150,7 +160,7 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
     prev = None
     for r in body_rows:
         pno, y, x0, text, size, bold, centred, _, x1, br = r
-        heading = centred and _is_heading(text)
+        heading = centred and (_is_heading(text) or (bold and not _starts_item(text) and len(text) < 120))
         start = prev is None or heading or bool(paras and paras[-1].heading)
         if not start:
             # the previous row stopped short of the justified right edge: the paragraph may have ended there.

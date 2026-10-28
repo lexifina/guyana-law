@@ -93,7 +93,7 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
                 cur, last, mode = art_key(n, s), _order(n, s), 'art'
                 units[cur], margins[cur] = [m_a.group(3)], list(p.margin)
                 continue
-        if layout._is_heading(t) and len(t) > 2:
+        if (p.heading or layout._is_heading(t)) and len(t) > 2:
             # Part / Chapter / Title headings between articles are structure, not text of an article
             if mode == 'preamble':
                 mode, cur = 'art', None
