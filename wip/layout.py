@@ -170,7 +170,10 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
             pt = prev[3].rstrip()
             item = _starts_item(text) and (short or pt[-1:] in '.;:,-' or pt.endswith((' or', ' and')))
             if pno == prev[0]:
-                start = y - prev[1] > para_gap or item
+                # a row well short of the right edge ends its paragraph when the next row starts a new sentence
+                # (lists printed without spacing, such as the entities in the Third Schedule)
+                listed = prev[8] < prev[9] - 40 and text[:1].isupper() and not pt.endswith(',')
+                start = y - prev[1] > para_gap or item or listed
             else:
                 # a new page: a new paragraph only if the previous page's last row ended one
                 start = item or ended

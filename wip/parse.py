@@ -33,7 +33,7 @@ E2022 = 'https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785162884.pdf'
 # (key, url, first page, last page (0-based, inclusive), smallest body font size)
 EDITIONS = {
     'e2010': (E2010, 25, 215, 10.0),
-    'e2012': (E2012, 29, 264, 9.5),
+    'e2012': (E2012, 29, 265, 9.5),
     'e2022': (E2022, 25, 227, 9.5),
 }
 
@@ -96,6 +96,9 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
         if (p.heading or layout._is_heading(t)) and len(t) > 2:
             # Part / Chapter / Title headings between articles are structure, not text of an article
             if mode == 'preamble':
+                if not re.match(r'(CONSTITUTION OF|PART )', t):
+                    units[cur].append(t)          # "WE, THE GUYANESE PEOPLE," is part of the preamble
+                    continue
                 mode, cur = 'art', None
             continue
         if cur is None:
