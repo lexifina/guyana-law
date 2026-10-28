@@ -1,0 +1,49 @@
+{
+ "country": "GY",
+ "acts": [
+  {
+   "slug": "constitution",
+   "short": "Constitution",
+   "title": "Constitution of the Co-operative Republic of Guyana",
+   "url": "https://www.mola.gov.gy/laws-of-guyana",
+   "versions": [
+    {
+     "from": "2007-08-28",
+     "units": 286,
+     "source_url": "https://web.archive.org/web/20121226190242id_/http://legalaffairs.gov.gy:80/information/laws-of-guyana/doc_download/2-chapter-00101.html",
+     "sha256": "21710c1390cdee074af1d8bcc34aea6033b6ad4ea51ff43addd1a14b213cbb84"
+    },
+    {
+     "from": "2009-03-17",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/2938-act_no._5.pdf",
+     "sha256": "9d5c1baa66013d6fb2f7a376c40ac5d648c7f7adadce5fbfb7b003249397801b"
+    },
+    {
+     "from": "2012-12-31",
+     "units": 287,
+     "source_url": "https://web.archive.org/web/20210404214043id_/https://mola.gov.gy/sites/default/files/Cap.101%20Constitution.pdf",
+     "sha256": "5550d6b17d21998e8281e9cc7afa1262503cb798d1540ae700d737ee26c3621f"
+    },
+    {
+     "from": "2015-07-10",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/5374-5374-act_no._2_of_2015.pdf",
+     "sha256": "c4bce9980fe988cdab0d7d342a8b14ff74a98a5e181b91e094e622941d4a1c32"
+    },
+    {
+     "from": "2016-01-11",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/5713-act_no._1_of_2016.pdf",
+     "sha256": "aeae4e07d45e9a2327dfdd24e2e39ccc915167336739c56bb5016caf38b26dd6"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 287,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785162884.pdf",
+     "sha256": "992bc4b16e21f2cc72530598054ecf38d4af957219ecc653a3bc62475279d838"
+    }
+   ]
+  }
+ ]
+}
