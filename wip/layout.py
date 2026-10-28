@@ -88,6 +88,11 @@ def _rows(spans: list[tuple], tol: float = 3.0) -> list[list[tuple]]:
     return rows
 
 
+def _touches(s: tuple, normal: list[tuple]) -> bool:
+    """A small span that sits on a body line (a superscript such as the "th" of "25th") touches a body-size span."""
+    return any(n[1] - 4 <= s[3] and s[1] <= n[3] + 4 and n[0] - 2 <= s[2] and s[0] <= n[2] + 2 for n in normal)
+
+
 def _join(row: list[tuple]) -> str:
     out = ''
     prev = None
@@ -131,7 +136,8 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         br = x1s[int(0.9 * (len(x1s) - 1))]   # the justified right edge (a few lines overrun it)
         body, margin = [], []
         for s in spans:
-            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or (s[4] < body_min and s[2] <= col - 3) or s[0] >= br - 1.5 or s[2] > br + 20 or s[0] < bl - 20):
+            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or (s[4] < body_min and s[2] <= col - 3) or s[0] >= br - 1.5 or s[2] > br + 20 or s[0] < bl - 20
+                    or (s[4] < body_min and not _touches(s, normal))):
                 margin.append(s)
             else:
                 body.append(s)

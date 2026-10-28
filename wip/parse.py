@@ -237,7 +237,9 @@ def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
     """Editorial tidying shared by every edition (each step is listed in DECISIONS)."""
     out = {}
     for k, lines in raw.items():
-        if k.startswith('art-') and len(lines) == 1 and PLACEHOLDER.match(lines[0]):
+        # editor's notes printed in the body of L.R.O. 1/2012 of Cap. 8:01: '(is to be removed)', '("to" to be removed)'
+        lines = [re.sub(r'\s*\((?:[^()]*\s)?(?:to\s*)?be\s*removed\)', '', l) for l in lines]
+        if k.startswith(('art-', 'sec-')) and len(lines) == 1 and PLACEHOLDER.match(lines[0]):
             continue                      # "[Article 11 repealed by Act No. 10 of 2003]": no text in force
         if k.startswith('sch-'):
             lines = [l for l in lines if not SCHED_REF.match(l)]   # the "Article 222A" side reference
@@ -255,13 +257,13 @@ def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
     return out
 
 
-def unit_label(k: str) -> str:
+def unit_label(k: str, one_schedule: bool = False) -> str:
     if k == 'preamble':
         return 'Preamble'
     if k.startswith('sch-'):
-        return SCHED_NAMES[int(k[4:])]
-    m = re.fullmatch(r'art-(\d+)([a-z]*)', k)
-    return f'Art. {int(m.group(1))}{m.group(2).upper()}'
+        return 'Schedule' if one_schedule else SCHED_NAMES[int(k[4:])]
+    m = re.fullmatch(r'(art|sec)-(\d+)([a-z]*)', k)
+    return f'{"Art." if m.group(1) == "art" else "s."} {int(m.group(2))}{m.group(3).upper()}'
 
 
 def unit_text(k: str, lines: list[str]) -> str:
@@ -269,6 +271,8 @@ def unit_text(k: str, lines: list[str]) -> str:
         head = '# Preamble'
     elif k.startswith('sch-'):
         head = None                       # a schedule's own first line is its heading ("THIRD SCHEDULE")
+    elif k.startswith('sec-'):
+        head = '# Section ' + unit_label(k)[3:]
     else:
         head = '# Article ' + unit_label(k)[5:]
     body = ([head] if head else []) + lines
@@ -276,8 +280,10 @@ def unit_text(k: str, lines: list[str]) -> str:
 
 
 def as_units(lines_by_key: dict[str, list[str]]) -> dict[str, dict]:
-    return {k: {'label': unit_label(k), 'kind': 'schedule' if k.startswith('sch-') else
-                'preamble' if k == 'preamble' else 'art', 'text': unit_text(k, v)}
+    one = sum(k.startswith('sch-') for k in lines_by_key) == 1 and not any(k.startswith('art-') for k in lines_by_key)
+    return {k: {'label': unit_label(k, one), 'kind': 'schedule' if k.startswith('sch-') else
+                'preamble' if k == 'preamble' else 'section' if k.startswith('sec-') else 'art',
+                'text': unit_text(k, v)}
             for k, v in sorted(lines_by_key.items())}
 
 
@@ -433,6 +439,99 @@ def constitution(eds: dict) -> dict:
             'earlier_laws': ['act-2-1980'] + [k for k, *_ in EARLIER], 'versions': versions}
 
 
+# ------------------------------------------------------------------ other Acts of the Laws of Guyana
+
+CIVIL_2012 = 'https://web.archive.org/web/20220622192734id_/https://mola.gov.gy/sites/default/files/Cap%20601_0.pdf'
+CIVIL_2022 = 'https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785167929.pdf'
+CRIM_2012 = 'https://web.archive.org/web/20211123081028id_/https://mola.gov.gy/sites/default/files/Cap%20801.pdf'
+CRIM_2022 = 'https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785253947.pdf'
+A12_2021 = PARL + '22860-act_no._12_of_2021.pdf'
+A10_2025 = PARL + '24371-24514-act_no._10_of_2025.pdf'
+
+CIVIL_EDITIONS = {'e2012': (CIVIL_2012, 4, 28, 9.5), 'e2022': (CIVIL_2022, 4, 28, 9.5)}
+CRIM_EDITIONS = {'e2012': (CRIM_2012, 20, 184, 9.5), 'e2022': (CRIM_2022, 20, 184, 9.5)}
+
+# The amending laws each chapter's front page lists (L.R.O. 1/2022; Cap. 8:01's "25 of 1793" is printed "25 of 1973"
+# in the side note to s. 2, and "7 of 2002" is listed only in L.R.O. 1/2012).
+CIVIL_AMENDERS = ['26 of 1949', '17 of 1959', '22 of 1960', '11 of 1971', '12 of 1983']
+CRIM_AMENDERS = ['11 of 1894', '12 of 1896', '24 of 1903', '10 of 1906', '28 of 1908', '3 of 1910', '29 of 1914',
+                 '1 of 1915', '29 of 1918', '21 of 1922', '38 of 1927', '21 of 1932', '15 of 1937', '25 of 1939',
+                 '26 of 1946', '23 of 1949', '18 of 1955', '18 of 1957', '14 of 1958', '29 of 1961', '24 of 1969',
+                 'O. 15/1970', '4 of 1972', '25 of 1973', 'O. 4/1974', 'O. 166/1974', 'O. 88/1975', '21 of 1978',
+                 '12 of 1988', '24 of 1990', '19 of 1991', '7 of 1995', '20 of 1997', '7 of 2002', '16 of 2005',
+                 '7 of 2010', '21 of 2010']
+
+
+def amender_laws(names: list[str], chapter: str) -> dict:
+    out = {}
+    for n in names:
+        m = re.fullmatch(r'(\d+) of (\d{4})', n)
+        if m:
+            key, label = f'act-{m.group(1)}-{m.group(2)}', f'Act No. {m.group(1)} of {m.group(2)}'
+            kind = 'law'
+        else:
+            m = re.fullmatch(r'O\. (\d+)/(\d{4})', n)
+            key, label, kind = f'order-{m.group(1)}-{m.group(2)}', f'Order No. {m.group(1)} of {m.group(2)}', 'decree'
+        out[key] = {'label': label, 'title': f'{label} (named as amending {chapter})', 'kind': kind,
+                    'enacted': None, 'published': None, 'url': None,
+                    'temporary_until': None, 'restores': None, 'note': None}
+    return out
+
+
+def other_laws() -> dict:
+    out = {
+        'act-15-1916': {'label': 'Act No. 15 of 1916', 'title': 'Civil Law of British Guiana Ordinance 1916',
+                        'kind': 'law', 'enacted': None, 'published': None, 'url': None,
+                        'temporary_until': None, 'restores': None, 'note': None},
+        'act-18-1893': {'label': 'Act No. 18 of 1893', 'title': 'Criminal Law (Offences) Ordinance 1893',
+                        'kind': 'law', 'enacted': None, 'published': None, 'url': None,
+                        'temporary_until': None, 'restores': None, 'note': None},
+    }
+    out.update(amender_laws(CIVIL_AMENDERS, 'Cap. 6:01'))
+    out.update(amender_laws(CRIM_AMENDERS, 'Cap. 8:01'))
+    return out
+
+
+def two_editions(slug: str, short: str, title: str, editions: dict, first: str, amenders: list[str],
+                 notes: tuple[str, str]) -> dict:
+    eds = read_all(editions, 'sec')
+    u12 = clean_units(eds['e2012'][0])
+    u22 = clean_units(eds['e2022'][0])
+    url12, url22 = editions['e2012'][0], editions['e2022'][0]
+    versions = [{'from': '2012-12-31', 'source_url': url12, 'sha256': sha(url12), 'units': as_units(u12),
+                 'credits': {}, 'note': notes[0]}]
+    if as_units(u22) != versions[0]['units']:
+        versions.append({'from': '2022-12-31', 'source_url': url22, 'sha256': sha(url22), 'units': as_units(u22),
+                         'credits': {}, 'note': notes[1]})
+    keys = [first] + list(amender_laws(amenders, '').keys())
+    return {'slug': slug, 'short': short, 'title': title, 'url': 'https://www.mola.gov.gy/laws-of-guyana',
+            'first_law': None, 'earlier_laws': keys, 'versions': versions}
+
+
+def civil_law() -> dict:
+    return two_editions(
+        'civil-law', 'Civil Law Act', 'Civil Law of Guyana Act (Cap. 6:01)', CIVIL_EDITIONS, 'act-15-1916',
+        CIVIL_AMENDERS,
+        ('Revised edition L.R.O. 1/2012 (the Laws of Guyana as they stood on 31 December 2012), read from the '
+         'Internet Archive (captured 22 June 2022). The 2022 revised edition (L.R.O. 1/2022) prints the same text. '
+         'Neither includes Act No. 12 of 2021 (Official Gazette, 11 August 2021), which substituted section 5(1)(b); '
+         'the Gazette print of that Act is a scan without a text layer, so its words are not reproduced here and '
+         'section 5(1)(b) in this file is the text before that Act.', ''))
+
+
+def criminal_law() -> dict:
+    return two_editions(
+        'criminal-law-offences', 'Criminal Law (Offences) Act', 'Criminal Law (Offences) Act (Cap. 8:01)',
+        CRIM_EDITIONS, 'act-18-1893', CRIM_AMENDERS,
+        ('Revised edition L.R.O. 1/2012 (the Laws of Guyana as they stood on 31 December 2012), read from the '
+         'Internet Archive (captured 23 November 2021).',
+         'The 2022 revised edition (L.R.O. 1/2022; the Laws of Guyana as they stood on 31 December 2022), today\'s '
+         'official text on mola.gov.gy. It lists no amending Act after 2010; its changes are revision edits and '
+         'corrections that no Act explains, so they are committed as unexplained. The Criminal Law Miscellaneous '
+         'Act, Act No. 10 of 2025 (Official Gazette, 5 June 2025), is later than this edition, and its Gazette '
+         'print is a scan without a text layer, so it is not applied.'))
+
+
 # ------------------------------------------------------------------ corpus.json
 
 DECISIONS = [
@@ -493,8 +592,8 @@ def corpus() -> dict:
              'licence': 'none stated', 'notes': 'the 2010 consolidation (legalaffairs.gov.gy, captured 2012-12-26) and '
                                                 'L.R.O. 1/2012 (captured 2016-01-19, 2021-04-04 and 2022-03-08, byte-identical)'},
         ],
-        'laws': laws(),
-        'acts': [constitution(eds)],
+        'laws': {**laws(), **other_laws()},
+        'acts': [constitution(eds), civil_law(), criminal_law()],
         'applies': [],
         'decisions': DECISIONS,
         'ai_use': AI_USE,
