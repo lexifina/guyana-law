@@ -1,0 +1,1 @@
+Verified 2026-10-28: the 2022-12-31 Constitution matches the official L.R.O. 1/2022 PDF on mola.gov.gy word for word both ways (verify.py: 0 added, 4 side-reference words unaccounted); every version carries the sha256 of its official source PDF; check.py 0 mismatches; --compare rebuild identical.

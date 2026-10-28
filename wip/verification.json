@@ -8,5 +8,12 @@
   "missing_in_force": 0,
   "trailer_errors": 0,
   "versions": 6
+ },
+ "rebuild": {
+  "commits": 6,
+  "history_tip": "4df0ae3fa4eaa8a2e9ec40d85ccd150eefb24de4",
+  "identical": true,
+  "main_identical": true,
+  "tags": 9
  }
 }
