@@ -168,7 +168,7 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
             short = prev[8] < prev[9] - 15
             ended = prev[8] < prev[9] - 25 and prev[3].rstrip()[-1:] in '.;:-'
             pt = prev[3].rstrip()
-            item = _starts_item(text) and (short or pt[-1:] in '.;:,-' or pt.endswith((' or', ' and')))
+            item = _starts_item(text) and (short or pt[-1:] in '.;:-' or re.search(r'[;,:] (or|and)$', pt) is not None)
             if pno == prev[0]:
                 # a row well short of the right edge ends its paragraph when the next row starts a new sentence
                 # (lists printed without spacing, such as the entities in the Third Schedule)
@@ -211,7 +211,7 @@ def _is_heading(t: str) -> bool:
     return bool(letters) and HEAD_RE.match(t) is not None and not re.match(r'^\(?\d+[A-Z]*\)?\s*\.', t)
 
 
-ITEM_RE = re.compile(r'^(\(\d+[A-Za-z]*\)|\([a-z]{1,2}\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)a?\)|\d{1,3}[A-Z]{0,2}\s?\.\s?|"[A-Za-z])')
+ITEM_RE = re.compile(r'^(\(\d+[A-Za-z]*\)|\([a-z]{1,2}\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)a?\)|\d{1,3}[A-Z]{0,2}\s?\.\s?(?=[A-Z(\[])|"[A-Za-z])')
 
 
 def _starts_item(t: str) -> bool:

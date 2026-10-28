@@ -235,6 +235,7 @@ def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
             continue                      # "[Article 11 repealed by Act No. 10 of 2003]": no text in force
         if k.startswith('sch-'):
             lines = [l for l in lines if not SCHED_REF.match(l)]   # the "Article 222A" side reference
+            lines = [l for l in lines if not re.fullmatch(r"\w+ Schedule \(cont'd\)", l)]   # running head
             split = []
             for l in lines:
                 if k == 'sch-3':
