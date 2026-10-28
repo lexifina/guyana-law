@@ -125,12 +125,13 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         bl = min(s[0] for s in wordy)
         # the text column's commonest left edge: side notes end left of it even on pages where a wide heading or
         # a long title starts further left than the text column
-        col = statistics.mode(round(s[0]) for s in wordy)
+        starts = [round(r[0][0]) for r in _rows(wordy)]
+        col = min([x for x in set(starts) if starts.count(x) >= 3] or [bl])
         x1s = sorted(s[2] for s in normal)
         br = x1s[int(0.9 * (len(x1s) - 1))]   # the justified right edge (a few lines overrun it)
         body, margin = [], []
         for s in spans:
-            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or s[2] <= col - 3 or s[0] >= br - 1.5 or s[2] > br + 20 or s[0] < bl - 20):
+            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or (s[4] < body_min and s[2] <= col - 3) or s[0] >= br - 1.5 or s[2] > br + 20 or s[0] < bl - 20):
                 margin.append(s)
             else:
                 body.append(s)
