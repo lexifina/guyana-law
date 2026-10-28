@@ -40,20 +40,24 @@ EDITIONS = {
 ART_RE = re.compile(r'^(\d{1,3})\s?([A-Z]{0,2})\s?\.\s*(.*)$')
 RANGE_RE = re.compile(r'^(\d{1,3})\s?\.?\s*-\s*(\d{1,3})\s?\.?\s*(\[.*)$')
 RANGE_SPLIT = re.compile(r'(?<=\])\s+(?=\d{1,3}\s?\.?\s*-\s*\d{1,3}\s?\.?\s*\[)')
-SCHED_RE = re.compile(r'^(FIRST|SECOND|THIRD|FOURTH) SCHEDULE\b')
-SCHED_NO = {'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4}
+SCHED_RE = re.compile(r'^(?:(FIRST|SECOND|THIRD|FOURTH) )?SCHEDULE\b')
+LONG_TITLE = re.compile(r'^(?:\S+ of \d{4}\s+)?An\s+Act\b')
+SCHED_NO = {None: 1, 'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4}
 
 
-def art_key(n: int, s: str) -> str:
-    return f'art-{n:03d}{s.lower()}'
+def art_key(n: int, s: str, prefix: str = 'art') -> str:
+    return f'{prefix}-{n:03d}{s.lower()}'
 
 
 def _order(n: int, s: str) -> tuple:
     return (n, len(s), s)
 
 
-def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
-    """Paragraphs -> {unit key: [lines]} and {unit key: [marginal notes]}."""
+def segment(paras: list[layout.Para], prefix: str = 'art') -> tuple[dict, dict]:
+    """Paragraphs -> {unit key: [lines]} and {unit key: [marginal notes]}.
+
+    prefix 'art': the Constitution, which starts at its PREAMBLE heading. prefix 'sec': an Act of the Laws of Guyana,
+    which starts after its long title ("An Act to ..."), so the arrangement of sections before it is skipped."""
     units: dict[str, list[str]] = {}
     margins: dict[str, list[str]] = {}
     cur = None
@@ -62,7 +66,9 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
     for p in paras:
         t = p.text
         if mode == 'before':
-            if t == 'PREAMBLE':
+            if prefix == 'sec' and LONG_TITLE.match(t):
+                mode = 'art'
+            elif prefix == 'art' and t == 'PREAMBLE':
                 mode, cur = 'preamble', 'preamble'
                 units[cur], margins[cur] = [], list(p.margin)
             continue
@@ -82,7 +88,7 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
                 m_r = RANGE_RE.match(part)
                 a, b = int(m_r.group(1)), int(m_r.group(2))
                 for n in range(a, b + 1):
-                    k = art_key(n, '')
+                    k = art_key(n, '', prefix)
                     units[k], margins[k] = [m_r.group(3)], list(p.margin)
             cur, last, mode = None, _order(b, ''), 'art'
             continue
@@ -90,7 +96,7 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
         if m_a:
             n, s = int(m_a.group(1)), m_a.group(2)
             if _order(n, s) > last and n <= last[0] + 12:
-                cur, last, mode = art_key(n, s), _order(n, s), 'art'
+                cur, last, mode = art_key(n, s, prefix), _order(n, s), 'art'
                 units[cur], margins[cur] = [m_a.group(3)], list(p.margin)
                 continue
         if (p.heading or layout._is_heading(t)) and len(t) > 2:
@@ -149,10 +155,10 @@ def tidy(line: str) -> str:
     return line
 
 
-def read_all() -> dict[str, tuple[dict, dict]]:
+def read_all(editions: dict | None = None, prefix: str = 'art') -> dict[str, tuple[dict, dict]]:
     out = {}
-    for ed, (url, a, b, bm) in EDITIONS.items():
-        out[ed] = segment(layout.read_edition(url, ed, a, b, bm))
+    for ed, (url, a, b, bm) in (editions or EDITIONS).items():
+        out[ed] = segment(layout.read_edition(url, ed, a, b, bm), prefix)
     texts = [l for u, _ in out.values() for ls in u.values() for l in ls]
     plain, hyph = vocabulary(texts)
     # words printed in at least two editions: the vocabulary used to split words a PDF glued together
