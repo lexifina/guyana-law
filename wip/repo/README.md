@@ -9,8 +9,10 @@ It follows the shared design of [lexifina/global-law](https://github.com/lexifin
 | Folder | Act | Versions | History |
 | --- | --- | ---: | --- |
 | `constitution/` | Constitution of the Co-operative Republic of Guyana (Cap. 1:01, Act 2 of 1980) | 6 | From the oldest consolidation online (in force 28 August 2007) to the 2022 revised edition, today's official text |
+| `civil-law/` | Civil Law of Guyana Act (Cap. 6:01, Act 15 of 1916) | 1 | The revised edition L.R.O. 1/2012; the 2022 edition prints the same text. **Section 5(1)(b) is not current:** see below |
+| `criminal-law-offences/` | Criminal Law (Offences) Act (Cap. 8:01, Act 18 of 1893) | 2 | The revised editions L.R.O. 1/2012 and 1/2022 |
 
-The six versions:
+The Constitution's six versions:
 
 | In force | Version | Author |
 | --- | --- | --- |
@@ -21,13 +23,16 @@ The six versions:
 | 2016-01-11 | The Parliament Office added to the Third Schedule | Act No. 1 of 2016 |
 | 2022-12-31 | Revised edition L.R.O. 1/2022: revision edits | publisher: unexplained |
 
-`constitution/README.md` lists every provision, how often it changed and when.
+Each folder's `README.md` lists every provision, how often it changed and when.
+
+**Civil Law Act, section 5(1)(b).** Act No. 12 of 2021 (Civil Law of Guyana (Amendment) Act 2021, Official Gazette 11 August 2021) substituted section 5(1)(b) (intestate succession where there are no descendants). The 2022 revised edition does not include it, and the Gazette print of the Act is a scan with no text layer, so its words are not in this repository: `civil-law/sec-005.md` shows paragraph (b) as it stood before 11 August 2021.
 
 ## A lawyer's questions as git commands
 
 | Question | Command |
 | --- | --- |
 | What did art. 7 say on 1 January 2010? | `python tools/in_force_on.py 2010-01-01 constitution 7` |
+| Section 5 of the Civil Law Act, or s. 100 of the Criminal Law (Offences) Act, today | `python tools/in_force_on.py 2026-10-28 civil-law 5` |
 | The same, with raw git (bash) | `git show $(git rev-list -1 --before="2010-01-01T23:59:59Z" main -- constitution/art-007.md):constitution/art-007.md` |
 | The same, in PowerShell | `$r = git rev-list -1 --before="2010-01-01T23:59:59Z" main -- constitution/art-007.md; git show "$($r):constitution/art-007.md"` |
 | Which law wrote each line of the Third Schedule? | `git blame constitution/sch-3.md` |
@@ -50,7 +55,7 @@ After a rebuild, refresh tags with `git fetch --force --tags`: a plain fetch kee
 
 - Every version is read back from git on the day it took effect and on the day before (`tools/check_repo.py`); both must match `corpus.json`. Results are in `REPRODUCE.md`.
 - Health checks: no merge commits on `main`, commit dates never go backwards, nothing dated in the future, and every commit's trailers parse with `git interpret-trailers --parse`.
-- **Against the official text today** (`tools/verify.py`): every word of the 2022-12-31 version is printed in the official L.R.O. 1/2022 PDF of Cap. 1:01 on mola.gov.gy, and every word that PDF prints between the Preamble and the end of the Fourth Schedule is in the repository, except what is left out on purpose (running heads, marginal notes, Part/Chapter/Title headings and repeal-only notes) and 4 words of side references. Every version carries the sha256 of the PDF it was parsed from.
+- **Against the official text today** (`tools/verify.py`): for each act, every word of the latest version is printed in the official L.R.O. 1/2022 PDF on mola.gov.gy, and every word that PDF prints for the act is in the repository, except what is left out on purpose (running heads, marginal notes, long titles, Part/Chapter/Title headings and repeal-only notes). On 2026-10-28: 0 words added in all three acts; 0 words unaccounted for in the Civil Law Act and the Criminal Law (Offences) Act, and 4 (side references) in the Constitution. `verify.py --older` runs the same check on the L.R.O. 1/2012 versions (0 words added; the only words unaccounted for are editor's notes and headings). Every version carries the sha256 of the PDF it was parsed from.
 - The words the Acts added were checked against the Gazette print: Article 119D (Act 5 of 2009, a scan with an OCR text layer) and the Third Schedule entries (Acts 2 of 2015 and 1 of 2016).
 - The repository is rebuilt from the same data a second time and must give identical hashes.
 
@@ -60,7 +65,7 @@ The author of a commit is the law that made the change, with an e-mail address t
 
 - **The first commit** is the oldest text available, credited to the publisher, and names the 27 laws that produced it: the Act of 1980 and every amendment the Laws of Guyana list up to Act 22 of 2007.
 - **Credits come only from the sources.** The three later Acts are credited because each one's own text inserts exactly the words that appear.
-- **Unexplained changes** are committed by the publisher, the Ministry of Legal Affairs, and labelled "unexplained". They are the revised editions' own changes, which the Law Revision Act allows (s. 11: correcting errors, shortening phrasing, formal alterations): in 2012 the Constitution was rewritten in gender-neutral terms ("he" became "he or she" in 135 provisions, along with corrections such as art. 1, which the 2010 consolidation misprinted as "the Referendum to Republic of Guyana"); in 2022, 61 provisions changed (for example "office of President" became "office of the President", and "offense" became "offence"). Both editions also differ from the Acts in small ways, which therefore show as unexplained too. Article 119D says "a Standing Committee" and "To assist it in its work" in the Gazette, and "a standing Committee" and "To assist in its work" in both editions.
+- **Unexplained changes** are committed by the publisher, the Ministry of Legal Affairs, and labelled "unexplained". They are the revised editions' own changes, which the Law Revision Act allows (s. 11: correcting errors, shortening phrasing, formal alterations): in 2012 the Constitution was rewritten in gender-neutral terms ("he" became "he or she"; 137 provisions changed in all, along with corrections such as art. 1, which the 2010 consolidation misprinted as "the Referendum to Republic of Guyana"); in 2022, 61 provisions changed (for example "office of President" became "office of the President", and "offense" became "offence"). Both editions also differ from the Acts in small ways, which therefore show as unexplained too. Article 119D says "a Standing Committee" and "To assist it in its work" in the Gazette, and "a standing Committee" and "To assist in its work" in both editions.
 - Blame credits whole lines (one paragraph per line). Use `git log -p --word-diff` to see exactly which words each change made.
 
 ## What it does not show
@@ -71,7 +76,9 @@ The author of a commit is the law that made the change, with an e-mail address t
 - **Headings and repealed articles.** Part, Chapter and Title headings are left out. Articles printed only as a repeal note ("[Article 11 repealed by Act No. 10 of 2003]") have no file; repeal notes inside an article are kept as printed.
 - **Images.** The flag and the coat of arms in the Second Schedule are images and are not reproduced.
 - **The 2010 consolidation** is a PDF with irregular spacing; parse.py splits words it prints run together only into words found in the later editions.
-- **Other acts.** Only the Constitution is here so far. The Laws of Guyana publish only the current revised edition of each chapter, and the Parliament website holds Acts as passed from 1928 (with gaps), so other acts need the same edition-and-replay work.
+- **Civil Law Act and Criminal Law (Offences) Act before 2012.** Only the revised editions of 2012 and 2022 are online, so each starts at 31 December 2012 as "oldest version available" and names the laws its front page lists. Their changes between 2012 and 2022 are revision edits that no Act explains (the 2022 edition of Cap. 8:01 lists no amending Act after 2010).
+- **Acts printed as scans.** Act 12 of 2021 (Civil Law), the Data Protection Act 2023 (Act 18 of 2023) and the Criminal Law Miscellaneous Act, Act 10 of 2025, exist only as scanned Gazette pages with no text layer. Recent Acts on the Parliament website are often scans, which is why the Data Protection Act is not here. They are not applied: no model may write legal text here.
+- **Other acts.** Only these three acts are here so far. The Laws of Guyana publish only the current revised edition of each chapter, and the Parliament website holds Acts as passed from 1928 (with gaps), so other acts need the same edition-and-replay work.
 
 ## How it is built
 
