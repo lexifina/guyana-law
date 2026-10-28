@@ -156,7 +156,8 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
             # A row starting "(c)" after a full-width row is a cross-reference wrapped onto a new line, not an item.
             short = prev[8] < prev[9] - 15
             ended = prev[8] < prev[9] - 25 and prev[3].rstrip()[-1:] in '.;:-'
-            item = _starts_item(text) and short
+            pt = prev[3].rstrip()
+            item = _starts_item(text) and (short or pt[-1:] in '.;:,-' or pt.endswith((' or', ' and')))
             if pno == prev[0]:
                 start = y - prev[1] > para_gap or item
             else:
@@ -195,7 +196,7 @@ def _is_heading(t: str) -> bool:
     return bool(letters) and HEAD_RE.match(t) is not None and not re.match(r'^\(?\d+[A-Z]*\)?\s*\.', t)
 
 
-ITEM_RE = re.compile(r'^(\(\d+[A-Za-z]*\)|\([a-z]{1,2}\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)\)|\d{1,3}[A-Z]{0,2}\s?\.\s)')
+ITEM_RE = re.compile(r'^(\(\d+[A-Za-z]*\)|\([a-z]{1,2}\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)\)|\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)a?\)|\d{1,3}[A-Z]{0,2}\s?\.\s?|"[A-Za-z])')
 
 
 def _starts_item(t: str) -> bool:

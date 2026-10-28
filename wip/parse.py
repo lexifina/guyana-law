@@ -138,7 +138,7 @@ def tidy(line: str) -> str:
     line = re.sub(r'\s+\)', ')', line)
     line = re.sub(r'\[\s+', '[', line)
     line = re.sub(r'\s*-$', ' -', line)          # "shall-" / "shall -" / "shall—": one form for a closing dash
-    line = re.sub(r'^\((\d+[A-Z]*|[a-z]{1,4})\)(?=[A-Za-z])', r'() ', line)   # "(1)Any" -> "(1) Any"
+    line = re.sub(r'^\((\d+[A-Z]*|[a-z]{1,4})\)(?=[A-Za-z])', r'(\1) ', line)   # "(1)Any" -> "(1) Any"
     return line
 
 
