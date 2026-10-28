@@ -14,7 +14,7 @@ import fitz  # PyMuPDF
 
 import fetch
 
-RUNNING_RE = re.compile(r'^(\d+ )?(LAWS OF ?GUYANA|(Constitution(?: of the Co-operative Republic of Guyana)? )?Cap\. ?1 ?: ?01( Constitution(?: of the Co-operative Republic of Guyana)?)?( \d+)?)$')
+RUNNING_RE = re.compile(r'^(\d+ )?(LAWS OF ?GUYANA|[A-Z][A-Za-z ()\-]+ Cap\. ?\d+ ?: ?\d+( \d+)?|Cap\. ?\d+ ?: ?\d+( [A-Z][A-Za-z ()\-]+)?)$')
 FOOT_RE = re.compile(r'^\s*\d\s*/\s*2\s*0\s*\d\s*\d\s*$')
 CITE_ONLY = re.compile(r'^\[[^\[\]]*\d{4}[^\[\]]*\]$')
 
@@ -109,8 +109,12 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         W = page.rect.width
         spans = _spans(page)
         # running head: everything at or above the "Cap. 1:01" header line; running foot: the L.R.O. line
-        head = [s for s in spans if re.search(r'Cap\.\s*1\s*:\s*01', s[6]) and s[1] < 140]
-        head_y = max(s[3] for s in head) + 2 if head else 100
+        # the running head's last line names the chapter ("Cap. 6:01"); its spans may be split word by word
+        top = [s for s in spans if s[1] < 140]
+        head_y = 100
+        for r in _rows(top):
+            if re.search(r'Cap\.\s*\d+\s*:\s*\d+', ' '.join(x[6] for x in r)):
+                head_y = max(x[3] for x in r) + 2
         spans = [s for s in spans if s[1] > head_y and not re.match(r'\s*L\.\s?R\.\s?O\.', s[6])
                  and not FOOT_RE.match(s[6])]
         spans = [s for s in spans if not re.fullmatch(r'\s*_+\s*', s[6])]
