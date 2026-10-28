@@ -220,6 +220,295 @@ def compare():
                 print('   ', l[:300])
 
 
+# ------------------------------------------------------------------ units as files
+
+PLACEHOLDER = re.compile(r'^\[[^\[\]]*\brepealed\b[^\[\]]*\]\.?$', re.I)
+SCHED_REF = re.compile(r'^Articles? [0-9A-Z]+(?:\(\d+\))?(?:(?:,| and) ?[0-9A-Z]+(?:\(\d+\))?)*$')
+SCHED_NAMES = {1: 'First Schedule', 2: 'Second Schedule', 3: 'Third Schedule', 4: 'Fourth Schedule'}
+
+
+def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Editorial tidying shared by every edition (each step is listed in DECISIONS)."""
+    out = {}
+    for k, lines in raw.items():
+        if k.startswith('art-') and len(lines) == 1 and PLACEHOLDER.match(lines[0]):
+            continue                      # "[Article 11 repealed by Act No. 10 of 2003]": no text in force
+        if k.startswith('sch-'):
+            lines = [l for l in lines if not SCHED_REF.match(l)]   # the "Article 222A" side reference
+            split = []
+            for l in lines:
+                if k == 'sch-3':
+                    split += re.split(r' (?=The [A-Z])', l)
+                elif k == 'sch-4':
+                    split += re.split(r'(?<=\.) (?=(?:Convention|Covenant|Inter-American) )', l)
+                else:
+                    split.append(l)
+            lines = split
+        out[k] = lines
+    return out
+
+
+def unit_label(k: str) -> str:
+    if k == 'preamble':
+        return 'Preamble'
+    if k.startswith('sch-'):
+        return SCHED_NAMES[int(k[4:])]
+    m = re.fullmatch(r'art-(\d+)([a-z]*)', k)
+    return f'Art. {int(m.group(1))}{m.group(2).upper()}'
+
+
+def unit_text(k: str, lines: list[str]) -> str:
+    if k == 'preamble':
+        head = '# Preamble'
+    elif k.startswith('sch-'):
+        head = None                       # a schedule's own first line is its heading ("THIRD SCHEDULE")
+    else:
+        head = '# Article ' + unit_label(k)[5:]
+    body = ([head] if head else []) + lines
+    return '\n'.join(body) + '\n'
+
+
+def as_units(lines_by_key: dict[str, list[str]]) -> dict[str, dict]:
+    return {k: {'label': unit_label(k), 'kind': 'schedule' if k.startswith('sch-') else
+                'preamble' if k == 'preamble' else 'art', 'text': unit_text(k, v)}
+            for k, v in sorted(lines_by_key.items())}
+
+
+def sha(url: str) -> str:
+    return hashlib.sha256(fetch.cached(url)).hexdigest()
+
+
+def pdf_text(url: str) -> str:
+    import fitz
+    doc = fitz.open(stream=fetch.cached(url), filetype='pdf')
+    return re.sub(r'\s+', ' ', '\n'.join(p.get_text() for p in doc))
+
+
+# ------------------------------------------------------------------ laws
+
+PARL = 'https://www.parliament.gov.gy/documents/acts/'
+A5_2009 = PARL + '2938-act_no._5.pdf'
+A2_2015 = PARL + '5374-5374-act_no._2_of_2015.pdf'
+A1_2016 = PARL + '5713-act_no._1_of_2016.pdf'
+A22_2007 = PARL + '2795-act_no_22.pdf'
+A24_2006 = PARL + '4688-act_no_24_of_2006.pdf'
+
+# Acts named on the front page of Cap. 1:01 (L.R.O. 1/2022) as amending the Constitution, up to Act 22 of 2007,
+# the newest one the 2010 consolidation includes. URL = the Act as published by Parliament, where it is online.
+EARLIER = [
+    ('act-17-1984', 'Act No. 17 of 1984', 'Public Service Appellate Tribunal Act 1984', PARL + '8242-act_no._17_of_1984_public_service_appellate_tribunal_act_1984.pdf', 'law'),
+    ('order-38-1987', 'Order No. 38 of 1987', 'Order No. 38 of 1987 (named as amending the Constitution; not online)', None, 'decree'),
+    ('act-1-1988', 'Act No. 1 of 1988', 'Constitution (Amendment) Act 1988', PARL + '8533-act_1_of_1988_constitution_amendment.pdf', 'law'),
+    ('act-23-1990', 'Act No. 23 of 1990', 'Constitution (Amendment) Act 1990', PARL + '8503-act_23__of_1990_constitution_amendment.pdf', 'law'),
+    ('act-1-1991', 'Act No. 1 of 1991', 'Act No. 1 of 1991 (named as amending the Constitution; not online)', None, 'law'),
+    ('act-12-1991', 'Act No. 12 of 1991', 'Act No. 12 of 1991 (named as amending the Constitution; not online)', None, 'law'),
+    ('act-35-1991', 'Act No. 35 of 1991', 'Act No. 35 of 1991 (named as amending the Constitution; not online)', None, 'law'),
+    ('act-36-1991', 'Act No. 36 of 1991', 'Act No. 36 of 1991 (named as amending the Constitution; not online)', None, 'law'),
+    ('act-11-1992', 'Act No. 11 of 1992', 'Election Laws (Amendment) Act 1992', PARL + '5890-11_of_1992_election_laws_(_amendment)_act_1992.pdf', 'law'),
+    ('act-21-1993', 'Act No. 21 of 1993', 'Constitution (Amendment) Act 1993', PARL + '5939-21_of_1993_constitution_(amendment)_act_1993.pdf', 'law'),
+    ('act-15-1995', 'Act No. 15 of 1995', 'Constitution (Amendment) Act 1995', PARL + '6021-15_of_1995_constitution_(amendment)_act_1995.pdf', 'law'),
+    ('act-2-2000', 'Act No. 2 of 2000', 'Constitution (Amendment) Act 2000', PARL + '6473-act_no._2_of_2000_constitution_(amendment)_acr_2000.pdf', 'law'),
+    ('act-11-2000', 'Act No. 11 of 2000', 'Constitution (Amendment) (No. 2) Act 2000', PARL + '6481-act_no.11_opf_2000_constitution_(amendment)_(no.2_act_2000.pdf', 'law'),
+    ('act-14-2000', 'Act No. 14 of 2000', 'Constitution (Amendment) (No. 3) Act 2000', PARL + '6483-act_14_of_2000_constitution_(amendment)_(no.3)_act_2000.pdf', 'law'),
+    ('act-17-2000', 'Act No. 17 of 2000', 'Constitution (Amendment) (No. 4) Act 2000', PARL + '6486-act_no.17_of_2000_constitution_(amendment)_(no.4)_act_2000.pdf', 'law'),
+    ('act-3-2001', 'Act No. 3 of 2001', 'Act No. 3 of 2001 (Constitution amendment)', PARL + '4458-act_no._3_of_2001.pdf', 'law'),
+    ('act-4-2001', 'Act No. 4 of 2001', 'Act No. 4 of 2001 (Constitution amendment)', PARL + '4459-act_no._4_of_2001.pdf', 'law'),
+    ('act-5-2001', 'Act No. 5 of 2001', 'Act No. 5 of 2001 (Constitution amendment)', PARL + '4557-act_no._5_of_2001.pdf', 'law'),
+    ('act-6-2001', 'Act No. 6 of 2001', 'Act No. 6 of 2001 (Constitution amendment)', PARL + '4558-act_no._6_of_2001.pdf', 'law'),
+    ('act-7-2001', 'Act No. 7 of 2001', 'Act No. 7 of 2001 (Constitution amendment)', PARL + '4559-act_no._7_of_2001.pdf', 'law'),
+    ('act-8-2001', 'Act No. 8 of 2001', 'Act No. 8 of 2001 (Constitution amendment)', PARL + '4560-act_no._8_of_2001.pdf', 'law'),
+    ('act-5-2003', 'Act No. 5 of 2003', 'Act No. 5 of 2003 (named as amending the Constitution; not online)', None, 'law'),
+    ('act-10-2003', 'Act No. 10 of 2003', 'Act No. 10 of 2003 (Constitution amendment)', PARL + '4619-act_no_10_of_2003.pdf', 'law'),
+    ('act-16-2004', 'Act No. 16 of 2004', 'Caribbean Court of Justice Act 2004', PARL + '4644-act_no._16_of_2004.pdf', 'law'),
+    ('act-24-2006', 'Act No. 24 of 2006', 'Constitution (Amendment) Act 2006', A24_2006, 'law'),
+    ('act-22-2007', 'Act No. 22 of 2007', 'Constitution (Amendment) Act 2007', A22_2007, 'law'),
+]
+
+
+def laws() -> dict:
+    out = {
+        'act-2-1980': {'label': 'Act No. 2 of 1980', 'title': 'Constitution of the Co-operative Republic of Guyana Act 1980',
+                       'kind': 'law', 'enacted': '1980-02-20', 'published': None, 'url': None,
+                       'temporary_until': None, 'restores': None, 'note': None},
+    }
+    for key, label, title, url, kind in EARLIER:
+        out[key] = {'label': label, 'title': title, 'kind': kind, 'enacted': None, 'published': None, 'url': url,
+                    'temporary_until': None, 'restores': None, 'note': None}
+    out['act-22-2007'].update(enacted='2007-08-28', published='2007-08-28')
+    out['act-24-2006'].update(enacted='2006-05-02', published='2006-05-02')
+    out['act-5-2009'] = {'label': 'Act No. 5 of 2009', 'title': 'Constitution (Amendment) Act 2009', 'kind': 'law',
+                         'enacted': None, 'published': '2009-03-17', 'url': A5_2009,
+                         'temporary_until': None, 'restores': None, 'note': None}
+    out['act-2-2015'] = {'label': 'Act No. 2 of 2015', 'title': 'Constitution (Amendment) Act 2015', 'kind': 'law',
+                         'enacted': None, 'published': '2015-07-10', 'url': A2_2015,
+                         'temporary_until': None, 'restores': None, 'note': None}
+    out['act-1-2016'] = {'label': 'Act No. 1 of 2016', 'title': 'Constitution (Amendment) Act 2016', 'kind': 'law',
+                         'enacted': None, 'published': '2016-01-11', 'url': A1_2016,
+                         'temporary_until': None, 'restores': None, 'note': None}
+    return out
+
+
+# ------------------------------------------------------------------ the Constitution's versions
+
+def act_5_2009_119d(e2012_lines: list[str]) -> list[str]:
+    """Article 119D in the words of Act 5 of 2009 as printed in the Gazette of 17 March 2009.
+
+    The Gazette PDF is a scan with an OCR text layer, so the article is taken from L.R.O. 1/2012 and the two places
+    where the Gazette's wording differs from that edition are restored from the Gazette (each checked here)."""
+    gz = pdf_text(A5_2009)
+    assert 'There shall be a Standing Committee of the' in gz   # the OCR interleaves the side note here
+    assert 'To assist it in its work, the Committee shall' in gz
+    lines = [l.replace('There shall be a standing Committee', 'There shall be a Standing Committee')
+              .replace('To assist in its work,', 'To assist it in its work,') for l in e2012_lines]
+    assert lines != e2012_lines
+    return lines
+
+
+def act_2_2015_entities() -> list[str]:
+    t = pdf_text(A2_2015)
+    m = re.search(r'addition to the Schedule of the following entities\s*[-–]\s*(.*?)\s*Passed by the National Assembly', t)
+    names = re.split(r' (?=The [A-Z])', m.group(1).strip())
+    names = [n.strip().rstrip('.') for n in names]
+    assert len(names) == 9, names
+    return names
+
+
+def act_1_2016_entity() -> str:
+    t = pdf_text(A1_2016)
+    m = re.search(r'addition to the Schedule of (The Parliament Office)\.', t)
+    return m.group(1)
+
+
+def constitution(eds: dict) -> dict:
+    u10 = clean_units(eds['e2010'][0])
+    u12 = clean_units(eds['e2012'][0])
+    u22 = clean_units(eds['e2022'][0])
+    v1 = dict(u10)
+    v2 = dict(v1)
+    v2['art-119d'] = act_5_2009_119d(u12['art-119d'])
+    v3 = dict(u12)
+    v4 = dict(v3)
+    v4['sch-3'] = v3['sch-3'] + act_2_2015_entities()
+    v5 = dict(v4)
+    v5['sch-3'] = v4['sch-3'] + [act_1_2016_entity()]
+    v6 = dict(u22)
+    versions = [
+        {'from': '2007-08-28', 'source_url': E2010, 'sha256': sha(E2010), 'units': as_units(v1), 'credits': {},
+         'note': 'Text of the consolidation of Cap. 1:01 published by the Ministry of Legal Affairs (PDF made '
+                 '1 October 2010, archived 26 December 2012). It includes Act No. 22 of 2007, in force 28 August '
+                 '2007, and not Act No. 5 of 2009, so it is dated from 28 August 2007.'},
+        {'from': '2009-03-17', 'source_url': A5_2009, 'sha256': sha(A5_2009), 'units': as_units(v2),
+         'credits': {'art-119d': ['act-5-2009']},
+         'note': 'Article 119D as inserted by Act No. 5 of 2009 (Official Gazette, Legal Supplement A, 17 March 2009).'},
+        {'from': '2012-12-31', 'source_url': E2012, 'sha256': sha(E2012), 'units': as_units(v3), 'credits': {},
+         'note': 'The revised edition authorised by Law Revision Order 1/2012 (the Laws of Guyana as they stood on '
+                 '31 December 2012). The Law Revision Commission may correct errors and make formal changes '
+                 '(Law Revision Act, Cap. 2:02, s. 11), and this edition rewrote the Constitution in gender-neutral '
+                 'terms ("he" became "he or she") and corrected the 2010 consolidation in many places. No Act explains '
+                 'these changes, so they are committed as unexplained. The same PDF was archived on 19 January 2016.'},
+        {'from': '2015-07-10', 'source_url': A2_2015, 'sha256': sha(A2_2015), 'units': as_units(v4),
+         'credits': {'sch-3': ['act-2-2015']},
+         'note': 'Nine entities added to the Third Schedule by Act No. 2 of 2015 (Official Gazette, 10 July 2015), '
+                 'in the words of the Act.'},
+        {'from': '2016-01-11', 'source_url': A1_2016, 'sha256': sha(A1_2016), 'units': as_units(v5),
+         'credits': {'sch-3': ['act-1-2016']},
+         'note': 'The Parliament Office added to the Third Schedule by Act No. 1 of 2016 (Official Gazette, '
+                 '11 January 2016), in the words of the Act.'},
+        {'from': '2022-12-31', 'source_url': E2022, 'sha256': sha(E2022), 'units': as_units(v6), 'credits': {},
+         'note': 'The 2022 revised edition (L.R.O. 1/2022; the Laws of Guyana as they stood on 31 December 2022), '
+                 'today\'s official text on mola.gov.gy. Its changes against the earlier versions are revision '
+                 'edits that no Act explains (for example "office of President" became "office of the President"), '
+                 'so they are committed as unexplained.'},
+    ]
+    return {'slug': 'constitution', 'short': 'Constitution',
+            'title': 'Constitution of the Co-operative Republic of Guyana',
+            'url': 'https://www.mola.gov.gy/laws-of-guyana', 'first_law': None,
+            'earlier_laws': ['act-2-1980'] + [k for k, *_ in EARLIER], 'versions': versions}
+
+
+# ------------------------------------------------------------------ corpus.json
+
+DECISIONS = [
+    'Constitution: no dated versions are published, and the Act of 1980 as enacted and five amending laws (1, 12, 35, 36 of 1991; 5 of 2003; Order 38 of 1987) are not online, so the history starts at the oldest consolidation available (the 2010 consolidation, which includes Act 22 of 2007) and is replayed forward from the Acts as published in the Gazette and the two revised editions (L.R.O. 1/2012 and 1/2022).',
+    'In-force dates follow the Interpretation and General Clauses Act, Cap. 2:01, s. 15: an Act comes into operation on the day it is published in the Gazette unless it says otherwise. Acts 5 of 2009, 2 of 2015 and 1 of 2016 name no other day, so their Gazette dates are used, read from the Gazette print itself (the Parliament index dates are wrong for some Acts).',
+    'A revised edition is dated by the day it states its text as at: 31 December 2012 for L.R.O. 1/2012 and 31 December 2022 for L.R.O. 1/2022 (Ministry of Legal Affairs; Law Revision Act, Cap. 2:02, s. 9: the authorised pages are the Statute Book as in force on the relevant revision date). The dates of the Law Revision Orders themselves were not found.',
+    'Differences between consecutive editions that no Act explains are committed by the publisher as "unexplained": the gender-neutral rewrite and corrections of L.R.O. 1/2012 (for example art. 1 "Referendum to Republic" in the 2010 consolidation, "Co-operative Republic" from 2012), and the revision edits of L.R.O. 1/2022.',
+    'Article 119D (Act 5 of 2009) is in the words of the Gazette print: it says "a Standing Committee" and "To assist it in its work", where both revised editions print "a standing Committee" and "To assist in its work". The text is taken from L.R.O. 1/2012 with those two words restored, each checked against the Gazette OCR text in parse.py; the 2012 edition\'s wording then shows as an unexplained change.',
+    'Act 2 of 2015 and Act 1 of 2016 add entities to the Third Schedule; the added lines are in the words of each Act ("The Office of the Ombudsman", "The Parliament Office"). L.R.O. 1/2022 prints them as "The office of the Ombudsman" and "The Parliament office.", which shows as an unexplained change on 2022-12-31.',
+    'Act 24 of 2006 (Gazette 2 May 2006) made article 61 apply to the Eighth Parliament as if "four months" stood for "three months" without changing its words. It predates the oldest version available, so it has no commit; it is listed with the earlier laws.',
+    'Marginal notes (the side headings and "[N of YYYY]" citations) are left out of the text. Cap. 2:01 s. 57(3) makes marginal notes part of the written law, but the 2010 consolidation prints them interleaved with the text, so they cannot be extracted reliably for every version. Each file starts with "# Article N" instead.',
+    'Part, Chapter and Title headings are left out: they are structure, not text of an article. Articles printed only as a repeal note ("[Article 11 repealed by Act No. 10 of 2003]") have no file, since nothing of them is in force. Repeal notes inside an article are kept as printed.',
+    'In the schedules, the side reference printed under the heading ("Article 222A") is left out, and list entries that the 2010 and 2012 PDFs print run together on one line are split one per line.',
+    'Typesetting is normalised in layout.py and parse.py: one form of quotes (the 2010 PDF uses U+201F as an apostrophe, the 2012 PDF U+201A/U+201B as double quotes, and the 2022 PDF one U+201A as a comma), dashes as "-", "..." for leaders, one space, "(3) (a)" as "(3)(a)" and "60 (2)" as "60(2)", and line-end hyphens removed only when the unhyphenated word occurs elsewhere in the three editions. Words that the 2010 PDF prints without spaces ("performthefunctions") are split into words that occur in at least two editions.',
+    'Images in the Second Schedule (flag, coat of arms) are not text and are not reproduced.',
+]
+
+AI_USE = [
+    'Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote fetch.py, sources.py, layout.py and parse.py and chose the sources and editions; it did not write or alter any legal text. parse.py is deterministic and runs no model; every line of law comes from an official PDF in the cache.',
+]
+
+
+def requests_by_host() -> dict:
+    hosts: dict[str, int] = {}
+    log = fetch.CACHE / 'requests.jsonl'
+    for line in log.read_text(encoding='utf-8').splitlines():
+        r = json.loads(line)
+        h = re.sub(r'^https?://([^/]+)/.*$', r'\1', r['url'])
+        hosts[h] = hosts.get(h, 0) + 1
+    return hosts
+
+
+def corpus() -> dict:
+    eds = read_all()
+    hosts = requests_by_host()
+    return {
+        'country': {
+            'code': 'GY', 'name': 'Guyana', 'slug': 'guyana', 'lang': 'en', 'tz': 'America/Guyana',
+            'future_branch': 'futuro',
+            'publisher': {'name': 'Ministry of Legal Affairs, Laws of Guyana', 'email': 'mola@lawsofguyana.invalid'},
+            'default_in_force_rule': {
+                'text': 'Interpretation and General Clauses Act, Cap. 2:01, s. 15: "Every Act shall be published in '
+                        'the Gazette and shall come into operation on the date of publication unless it is provided '
+                        'in that Act or some other written law that it shall come into operation on some other date."',
+                'source': 'https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164106.pdf'},
+            'licence_note': 'Laws of Guyana, Ministry of Legal Affairs (mola.gov.gy); Acts as published by the '
+                            'Parliament of Guyana (parliament.gov.gy). No licence is stated.',
+        },
+        'sources': [
+            {'name': 'Laws of Guyana, Ministry of Legal Affairs (L.R.O. 1/2022)', 'url': 'https://www.mola.gov.gy/laws-of-guyana',
+             'retrieved': '2026-10-28', 'requests': hosts.get('www.mola.gov.gy', 0) + hosts.get('mola.gov.gy', 0),
+             'licence': 'none stated', 'notes': 'one PDF per chapter, current revised edition only; robots.txt allows all'},
+            {'name': 'Acts of Parliament, Parliament of Guyana', 'url': 'https://parliament.gov.gy/publications/acts-of-parliament/',
+             'retrieved': '2026-10-28', 'requests': hosts.get('www.parliament.gov.gy', 0) + hosts.get('parliament.gov.gy', 0),
+             'licence': 'none stated', 'notes': 'Acts as published in the Official Gazette, 1928-2025, PDF'},
+            {'name': 'Internet Archive Wayback Machine (earlier editions of Cap. 1:01)', 'url': 'https://web.archive.org/',
+             'retrieved': '2026-10-28', 'requests': hosts.get('web.archive.org', 0),
+             'licence': 'none stated', 'notes': 'the 2010 consolidation (legalaffairs.gov.gy, captured 2012-12-26) and '
+                                                'L.R.O. 1/2012 (captured 2016-01-19, 2021-04-04 and 2022-03-08, byte-identical)'},
+        ],
+        'laws': laws(),
+        'acts': [constitution(eds)],
+        'applies': [],
+        'decisions': DECISIONS,
+        'ai_use': AI_USE,
+    }
+
+
+def write():
+    c = corpus()
+    raw = json.dumps(c, ensure_ascii=False, indent=1, sort_keys=False) + '\n'
+    tmp = HERE / 'corpus.json.tmp'
+    tmp.write_text(raw, encoding='utf-8', newline='\n')
+    os.replace(tmp, HERE / 'corpus.json')
+    for a in c['acts']:
+        print(a['slug'], [(v['from'], len(v['units']), sorted(v['credits'])) for v in a['versions']])
+
+
 if __name__ == '__main__':
     if '--compare' in sys.argv:
         compare()
+    elif '--dry' in sys.argv:
+        c = corpus()
+        print(json.dumps(c['acts'][0]['versions'][4]['units']['sch-3'], indent=1))
+    else:
+        write()
