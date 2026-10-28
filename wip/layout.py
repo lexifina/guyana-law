@@ -14,6 +14,7 @@ import fitz  # PyMuPDF
 
 import fetch
 
+FOOT_RE = re.compile(r'^\s*\d\s*/\s*2\s*0\s*\d\s*\d\s*$')
 CITE_ONLY = re.compile(r'^\[[^\[\]]*\d{4}[^\[\]]*\]$')
 
 
@@ -99,7 +100,8 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         # running head: everything at or above the "Cap. 1:01" header line; running foot: the L.R.O. line
         head = [s for s in spans if re.search(r'Cap\.\s*1\s*:\s*01', s[6]) and s[1] < 140]
         head_y = max(s[3] for s in head) + 2 if head else 100
-        spans = [s for s in spans if s[1] > head_y and not re.match(r'\s*L\.R\.O\.', s[6])]
+        spans = [s for s in spans if s[1] > head_y and not re.match(r'\s*L\.\s?R\.\s?O\.', s[6])
+                 and not FOOT_RE.match(s[6])]
         spans = [s for s in spans if not re.fullmatch(r'\s*_+\s*', s[6])]
         normal = [s for s in spans if s[4] >= body_min]
         if not normal:
@@ -123,11 +125,11 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
             bold = all(s[5] for s in r if s[6].strip())
             centred = abs((x0 + x1) / 2 - (bl + br) / 2) < 25 and x0 > bl + 20
             is_margin = bool(CITE_ONLY.match(text))
-            rows_all.append((pno, y, x0, text, size, bold, centred, is_margin))
+            rows_all.append((pno, y, x0, text, size, bold, centred, is_margin, x1, br))
         for r in _rows(margin):
             text = norm(_join(r), ed).strip()
             if text:
-                rows_all.append((pno, max(s[3] for s in r), r[0][0], text, r[0][4], False, False, True))
+                rows_all.append((pno, max(s[3] for s in r), r[0][0], text, r[0][4], False, False, True, 0, 0))
     # line spacing of the edition: median gap between consecutive body rows on one page
     gaps = []
     body_rows = [r for r in rows_all if not r[7]]
@@ -144,14 +146,17 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
     paras: list[Para] = []
     prev = None
     for r in body_rows:
-        pno, y, x0, text, size, bold, centred, _ = r
+        pno, y, x0, text, size, bold, centred, _, x1, br = r
         heading = centred and _is_heading(text)
         start = (prev is None or heading or (paras and paras[-1].heading) or _starts_item(text))
         if not start:
             if pno == prev[0]:
                 start = y - prev[1] > para_gap
             else:
-                start = abs(x0 - cont_x[pno]) > 8
+                # a new page: a new paragraph if this row is indented or out-dented, or the last row of the
+                # previous page stopped short of the right margin after a full stop, semicolon or colon
+                ended = prev[8] < prev[9] - 25 and prev[3].rstrip()[-1:] in '.;:'
+                start = abs(x0 - cont_x[pno]) > 8 or ended
         if start:
             paras.append(Para(pno, y, x0, text, heading))
         else:
