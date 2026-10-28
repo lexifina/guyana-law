@@ -38,7 +38,8 @@ EDITIONS = {
 }
 
 ART_RE = re.compile(r'^(\d{1,3})\s?([A-Z]{0,2})\s?\.\s*(.*)$')
-RANGE_RE = re.compile(r'^(\d{1,3})\s?\.\s*-\s*(\d{1,3})\s?\.\s*(.*)$')
+RANGE_RE = re.compile(r'^(\d{1,3})\s?\.?\s*-\s*(\d{1,3})\s?\.?\s*(\[.*)$')
+RANGE_SPLIT = re.compile(r'(?<=\])\s+(?=\d{1,3}\s?\.?\s*-\s*\d{1,3}\s?\.?\s*\[)')
 SCHED_RE = re.compile(r'^(FIRST|SECOND|THIRD|FOURTH) SCHEDULE\b')
 SCHED_NO = {'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4}
 
@@ -76,10 +77,13 @@ def segment(paras: list[layout.Para]) -> tuple[dict, dict]:
             continue
         m_r = RANGE_RE.match(t)
         if m_r and int(m_r.group(1)) > last[0]:
-            a, b = int(m_r.group(1)), int(m_r.group(2))
-            for n in range(a, b + 1):
-                k = art_key(n, '')
-                units[k], margins[k] = [m_r.group(3)], list(p.margin)
+            # a run of repealed articles ("79. - 88. [Articles 79 to 88 repealed ...]"): one unit per article
+            for part in RANGE_SPLIT.split(t):
+                m_r = RANGE_RE.match(part)
+                a, b = int(m_r.group(1)), int(m_r.group(2))
+                for n in range(a, b + 1):
+                    k = art_key(n, '')
+                    units[k], margins[k] = [m_r.group(3)], list(p.margin)
             cur, last, mode = None, _order(b, ''), 'art'
             continue
         m_a = ART_RE.match(t)
@@ -133,6 +137,8 @@ def tidy(line: str) -> str:
     line = re.sub(r'\(\s+', '(', line)
     line = re.sub(r'\s+\)', ')', line)
     line = re.sub(r'\[\s+', '[', line)
+    line = re.sub(r'\s*-$', ' -', line)          # "shall-" / "shall -" / "shall—": one form for a closing dash
+    line = re.sub(r'^\((\d+[A-Z]*|[a-z]{1,4})\)(?=[A-Za-z])', r'() ', line)   # "(1)Any" -> "(1) Any"
     return line
 
 

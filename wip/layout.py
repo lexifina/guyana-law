@@ -106,11 +106,13 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         normal = [s for s in spans if s[4] >= body_min]
         if not normal:
             continue
-        bl = min(s[0] for s in normal)
-        br = max(s[2] for s in normal)
+        wordy = [s for s in normal if len(re.findall(r'[A-Za-z0-9]', s[6])) >= 2] or normal
+        bl = min(s[0] for s in wordy)
+        x1s = sorted(s[2] for s in normal)
+        br = x1s[int(0.9 * (len(x1s) - 1))]   # the justified right edge (a few lines overrun it)
         body, margin = [], []
         for s in spans:
-            if s[4] < body_min and (s[2] <= bl + 1.5 or s[0] >= br - 1.5):
+            if (s[4] < body_min or not re.search(r'[A-Za-z0-9]', s[6])) and (s[2] <= bl + 1.5 or s[0] >= br - 1.5):
                 margin.append(s)
             else:
                 body.append(s)
@@ -148,15 +150,18 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
     for r in body_rows:
         pno, y, x0, text, size, bold, centred, _, x1, br = r
         heading = centred and _is_heading(text)
-        start = (prev is None or heading or (paras and paras[-1].heading) or _starts_item(text))
+        start = prev is None or heading or bool(paras and paras[-1].heading)
         if not start:
+            # the previous row stopped short of the justified right edge: the paragraph may have ended there.
+            # A row starting "(c)" after a full-width row is a cross-reference wrapped onto a new line, not an item.
+            short = prev[8] < prev[9] - 15
+            ended = prev[8] < prev[9] - 25 and prev[3].rstrip()[-1:] in '.;:-'
+            item = _starts_item(text) and short
             if pno == prev[0]:
-                start = y - prev[1] > para_gap
+                start = y - prev[1] > para_gap or item
             else:
-                # a new page: a new paragraph if this row is indented or out-dented, or the last row of the
-                # previous page stopped short of the right margin after a full stop, semicolon or colon
-                ended = prev[8] < prev[9] - 25 and prev[3].rstrip()[-1:] in '.;:'
-                start = abs(x0 - cont_x[pno]) > 8 or ended
+                # a new page: a new paragraph only if the previous page's last row ended one
+                start = item or ended
         if start:
             paras.append(Para(pno, y, x0, text, heading))
         else:
