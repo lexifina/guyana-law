@@ -1,0 +1,18 @@
+The legal texts come from official publications of the Co-operative Republic of Guyana:
+
+  Laws of Guyana, revised editions L.R.O. 1/2012 and L.R.O. 1/2022, and the 2010 consolidation of Cap. 1:01,
+  Ministry of Legal Affairs (https://www.mola.gov.gy/laws-of-guyana; earlier editions read from the Internet
+  Archive), and Acts of Parliament as published in the Official Gazette (https://parliament.gov.gy),
+  retrieved 28 October 2026.
+
+Neither source states a licence. They are official legal texts of Guyana, reproduced with the attribution above;
+their copyright status is not confirmed here.
+
+Changes made by Lexifina: each version was converted to one Markdown file per provision, one paragraph per line;
+spacing, quotes and dashes were normalised; running heads, marginal notes and Part/Chapter/Title headings were left
+out; and the versions were arranged as git commits credited to the Acts that made each change. The wording of the law
+was not changed. Neither the Ministry of Legal Affairs nor the Parliament of Guyana endorses this repository.
+
+Lexifina's own contributions (the arrangement of the history, the commit messages, the tables and the tools) are
+dedicated to the public domain under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode

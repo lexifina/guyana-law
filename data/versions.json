@@ -1,0 +1,563 @@
+{
+ "country": "GY",
+ "acts": [
+  {
+   "slug": "constitution",
+   "short": "Constitution",
+   "title": "Constitution of the Co-operative Republic of Guyana",
+   "url": "https://www.mola.gov.gy/laws-of-guyana",
+   "versions": [
+    {
+     "from": "2007-08-28",
+     "units": 286,
+     "source_url": "https://web.archive.org/web/20121226190242id_/http://legalaffairs.gov.gy:80/information/laws-of-guyana/doc_download/2-chapter-00101.html",
+     "sha256": "21710c1390cdee074af1d8bcc34aea6033b6ad4ea51ff43addd1a14b213cbb84"
+    },
+    {
+     "from": "2009-03-17",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/2938-act_no._5.pdf",
+     "sha256": "9d5c1baa66013d6fb2f7a376c40ac5d648c7f7adadce5fbfb7b003249397801b"
+    },
+    {
+     "from": "2012-12-31",
+     "units": 287,
+     "source_url": "https://web.archive.org/web/20210404214043id_/https://mola.gov.gy/sites/default/files/Cap.101%20Constitution.pdf",
+     "sha256": "5550d6b17d21998e8281e9cc7afa1262503cb798d1540ae700d737ee26c3621f"
+    },
+    {
+     "from": "2015-07-10",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/5374-5374-act_no._2_of_2015.pdf",
+     "sha256": "c4bce9980fe988cdab0d7d342a8b14ff74a98a5e181b91e094e622941d4a1c32"
+    },
+    {
+     "from": "2016-01-11",
+     "units": 287,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/5713-act_no._1_of_2016.pdf",
+     "sha256": "aeae4e07d45e9a2327dfdd24e2e39ccc915167336739c56bb5016caf38b26dd6"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 287,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785162884.pdf",
+     "sha256": "992bc4b16e21f2cc72530598054ecf38d4af957219ecc653a3bc62475279d838"
+    }
+   ]
+  },
+  {
+   "slug": "civil-law",
+   "short": "Civil Law Act",
+   "title": "Civil Law of Guyana Act (Cap. 6:01)",
+   "url": "https://www.mola.gov.gy/laws-of-guyana",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 23,
+     "source_url": "https://web.archive.org/web/20220622192734id_/https://mola.gov.gy/sites/default/files/Cap%20601_0.pdf",
+     "sha256": "54e4cc03fff202eb42ee766262df17776136176a142cc9cdac3bc9475129a51c"
+    }
+   ]
+  },
+  {
+   "slug": "criminal-law-offences",
+   "short": "Criminal Law (Offences) Act",
+   "title": "Criminal Law (Offences) Act (Cap. 8:01)",
+   "url": "https://www.mola.gov.gy/laws-of-guyana",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 338,
+     "source_url": "https://web.archive.org/web/20211123081028id_/https://mola.gov.gy/sites/default/files/Cap%20801.pdf",
+     "sha256": "4291c0495da81251b0ddd66589b642477dd37043f21290120eed54144b50bf11"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 337,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785253947.pdf",
+     "sha256": "510ab40cc2789ea47361512d00a95d8e0f1cef35381bf699eb4048e9720f5c7e"
+    }
+   ]
+  },
+  {
+   "slug": "criminal-law-procedure",
+   "short": "Criminal Law (Procedure) Act",
+   "title": "Criminal Law (Procedure) Act (Cap. 10:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071696982382.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 229,
+     "source_url": "https://web.archive.org/web/20220622193927id_/https://mola.gov.gy/sites/default/files/Cap.%201001%20Criminal%20Law%20Procedure.pdf",
+     "sha256": "69a4cf608e2f7c0fb49753c4506e4c0875d7c9c17116e6ca1f1b38c237469baa"
+    }
+   ]
+  },
+  {
+   "slug": "high-court",
+   "short": "High Court Act",
+   "title": "High Court Act (Cap. 3:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164285.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 77,
+     "source_url": "https://web.archive.org/web/20220622190133id_/https://mola.gov.gy/sites/default/files/Cap.302%20High%20Court.pdf",
+     "sha256": "97f07b1ce67542347e540dad1d2cb79424358f84eaf1e3291f7daf8c87b32bc4"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 77,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164285.pdf",
+     "sha256": "327b27a04f063182e43cd0686143c142bbf545f677c5c1b4ab4f98c4d3e2b114"
+    }
+   ]
+  },
+  {
+   "slug": "labour",
+   "short": "Labour Act",
+   "title": "Labour Act (Cap. 98:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 18 Cap. 91.02 - 96.011695660707.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 47,
+     "source_url": "https://web.archive.org/web/20220730124937id_/https://mola.gov.gy/sites/default/files/Cap.%209801.pdf",
+     "sha256": "d6a83cf5c24ab29a43e8fc01d21da6e45b800a284a92c368e788b6e11a91853b"
+    }
+   ]
+  },
+  {
+   "slug": "companies",
+   "short": "Companies Act",
+   "title": "Companies Act (Cap. 89:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 16 Cap. 83.01 - 89.011695667005.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 527,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 16 Cap. 83.01 - 89.011695667005.pdf",
+     "sha256": "4311d05abf79774e08f5aa9c8fb60df7e1b82ae11781a58f63445eead54161cf"
+    }
+   ]
+  },
+  {
+   "slug": "evidence",
+   "short": "Evidence Act",
+   "title": "Evidence Act (Cap. 5:03)",
+   "url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785166353.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 112,
+     "source_url": "https://web.archive.org/web/20220622192108id_/https://mola.gov.gy/sites/default/files/Cap%20503.pdf",
+     "sha256": "98b1ccdec9dc14d7d404400b8ea7d4bb3a7c978848ee0488d8f8e9ee5d84eff5"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 113,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785166353.pdf",
+     "sha256": "2f349c3f9eed91fd4bc4130bc94685baaadc53f5802a48acbf80ac82d90ec5bd"
+    }
+   ]
+  },
+  {
+   "slug": "limitation",
+   "short": "Limitation Act",
+   "title": "Limitation Act (Cap. 7:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785168480.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 15,
+     "source_url": "https://web.archive.org/web/20220622193113id_/https://mola.gov.gy/sites/default/files/Cap%20702.pdf",
+     "sha256": "2ef95ee834723a032c6a37fb5607f5f110653e1a724cefad371f25368d5596de"
+    }
+   ]
+  },
+  {
+   "slug": "defamation",
+   "short": "Defamation Act",
+   "title": "Defamation Act (Cap. 6:03)",
+   "url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785168085.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 18,
+     "source_url": "https://web.archive.org/web/20220622192849id_/https://mola.gov.gy/sites/default/files/Cap%20603.pdf",
+     "sha256": "a217189f8242b0d8899540583b88b3d21a5f073415db61ee69f41694c4b83e9d"
+    },
+    {
+     "from": "2022-12-31",
+     "units": 18,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785168085.pdf",
+     "sha256": "7f1465dcbca1266bae687d711e81a3d1670e35abaf65ffa265881628436b8199"
+    }
+   ]
+  },
+  {
+   "slug": "interpretation",
+   "short": "Interpretation and General Clauses Act",
+   "title": "Interpretation and General Clauses Act (Cap. 2:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164106.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 62,
+     "source_url": "https://web.archive.org/web/20220622185952id_/https://mola.gov.gy/sites/default/files/Cap.201.pdf",
+     "sha256": "500210b0dd5c2742be2f342f1c58e109936bb42199d3c277477ba8278005eb1e"
+    }
+   ]
+  },
+  {
+   "slug": "summary-jurisdiction-appeals",
+   "short": "Summary Jurisdiction (Appeals) Act",
+   "title": "Summary Jurisdiction (Appeals) Act (Cap. 3:04)",
+   "url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164383.pdf",
+   "versions": [
+    {
+     "from": "2022-12-31",
+     "units": 41,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 1 Cap. 1.01 - 3.041785164383.pdf",
+     "sha256": "76b945d554a54872ca4e764cb0b07f6030f76482ceb4edddae198d922bc08164"
+    }
+   ]
+  },
+  {
+   "slug": "summary-jurisdiction-magistrates",
+   "short": "Summary Jurisdiction (Magistrates) Act",
+   "title": "Summary Jurisdiction (Magistrates) Act (Cap. 3:05)",
+   "url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785164452.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 79,
+     "source_url": "https://web.archive.org/web/20220622191044id_/https://mola.gov.gy/sites/default/files/Cap%20305.pdf",
+     "sha256": "75811c763bbe491a4fe497ac61f045cc9147bcc531c5e47aeb1e8f44d32f56c2"
+    }
+   ]
+  },
+  {
+   "slug": "summary-jurisdiction-petty-debt",
+   "short": "Summary Jurisdiction (Petty Debt) Act",
+   "title": "Summary Jurisdiction (Petty Debt) Act (Cap. 7:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071785168328.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 66,
+     "source_url": "https://web.archive.org/web/20220622193037id_/https://mola.gov.gy/sites/default/files/Cap%20701.pdf",
+     "sha256": "7b3dd427af3662a492ac42acc3c5e1f99ebe40f6c131a99d205fab65af06aed7"
+    }
+   ]
+  },
+  {
+   "slug": "summary-jurisdiction-procedure",
+   "short": "Summary Jurisdiction (Procedure) Act",
+   "title": "Summary Jurisdiction (Procedure) Act (Cap. 10:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071696971380.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 115,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 3 Cap. 6.03 - 10.071696971380.pdf",
+     "sha256": "c6431f4a5bd86407600daaf33faa4aa80a0cc41018797cfac1a9c87c28db5c3d"
+    }
+   ]
+  },
+  {
+   "slug": "domestic-violence",
+   "short": "Domestic Violence Act",
+   "title": "Domestic Violence Act (Cap. 11:09)",
+   "url": "https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970601.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 49,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970601.pdf",
+     "sha256": "4179c80e5dea607e1666244e8498577305fce7c58890542f6e2bb08b3982f85b"
+    }
+   ]
+  },
+  {
+   "slug": "wills",
+   "short": "Wills Act",
+   "title": "Wills Act (Cap. 12:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970484.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 13,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970484.pdf",
+     "sha256": "4920edfe5703174dfe6e09294afee5bee2db88e13ea749bf3d849852a369e264"
+    }
+   ]
+  },
+  {
+   "slug": "family-dependants-provision",
+   "short": "Family and Dependants Provision Act",
+   "title": "Family and Dependants Provision Act (Cap. 12:24)",
+   "url": "https://www.mola.gov.gy/laws/Volume 5 Cap. 12.22 - 17.021696970331.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 17,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 5 Cap. 12.22 - 17.021696970331.pdf",
+     "sha256": "834b687364ee047151ec8cec767c942b6169f220449f7b21a20ffc83d9b4c379"
+    }
+   ]
+  },
+  {
+   "slug": "matrimonial-causes",
+   "short": "Matrimonial Causes Act",
+   "title": "Matrimonial Causes Act (Cap. 45:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696828171.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 40,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696828171.pdf",
+     "sha256": "f77405a114bb67645e892a532f0726413f28afa358f669f56142f26363d9e9b4"
+    }
+   ]
+  },
+  {
+   "slug": "maintenance",
+   "short": "Maintenance Act",
+   "title": "Maintenance Act (Cap. 45:03)",
+   "url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696828132.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 14,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696828132.pdf",
+     "sha256": "1e8421857ff5f4ac08e026be828b59d7994b2736e6d7f9dd44ff1816946b91b6"
+    }
+   ]
+  },
+  {
+   "slug": "status-of-children",
+   "short": "Status of Children Act",
+   "title": "Status of Children Act (Cap. 46:05)",
+   "url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696827883.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 53,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696827883.pdf",
+     "sha256": "2a3a91bbed2feaf58ce890cb20fae7020eb000dfa7f080eba1f370cd828313e4"
+    }
+   ]
+  },
+  {
+   "slug": "deeds-registry",
+   "short": "Deeds Registry Act",
+   "title": "Deeds Registry Act (Cap. 5:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785167325.pdf",
+   "versions": [
+    {
+     "from": "2022-12-31",
+     "units": 52,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785167325.pdf",
+     "sha256": "e3cfae672d724b7a08d52c85023779136f9bbea7fb0b7d35b52a59773d226d0e"
+    }
+   ]
+  },
+  {
+   "slug": "land-registry",
+   "short": "Land Registry Act",
+   "title": "Land Registry Act (Cap. 5:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 2 Cap. 3.05 - 6.021785166295.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 166,
+     "source_url": "https://web.archive.org/web/20220622192023id_/https://mola.gov.gy/sites/default/files/Cap%20502.pdf",
+     "sha256": "73cd1e70a5a54ba8c8d3a976d914149f9c366e2c786ea25544b333bec6144e61"
+    }
+   ]
+  },
+  {
+   "slug": "title-to-land",
+   "short": "Title to Land (Prescription and Limitation) Act",
+   "title": "Title to Land (Prescription and Limitation) Act (Cap. 60:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696626307.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 23,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696626307.pdf",
+     "sha256": "caadb193c2dab3f59b7b545114b52c3b724de2c73ee722ef9cae9becf5b4be0b"
+    }
+   ]
+  },
+  {
+   "slug": "landlord-and-tenant",
+   "short": "Landlord and Tenant Act",
+   "title": "Landlord and Tenant Act (Cap. 61:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696625534.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 65,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696625534.pdf",
+     "sha256": "912f5cbe233abc45653e10346431e454e1e90763b4d1d2bcb9fc266ff84ecd19"
+    }
+   ]
+  },
+  {
+   "slug": "state-lands",
+   "short": "State Lands Act",
+   "title": "State Lands Act (Cap. 62:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696625429.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 46,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 12 Cap. 59.01 - 68.091696625429.pdf",
+     "sha256": "3e8e7d43047444f4b3143ca2f4e2224629afd7f57c3809bc1b97864a174922de"
+    }
+   ]
+  },
+  {
+   "slug": "rent-restriction",
+   "short": "Rent Restriction Act",
+   "title": "Rent Restriction Act (Cap. 36:23)",
+   "url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696910931.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 31,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696910931.pdf",
+     "sha256": "575833f4852099b283554422edfe0709885ca2b72e79a7d8d607adfa5013afea"
+    }
+   ]
+  },
+  {
+   "slug": "partnership",
+   "short": "Partnership Act",
+   "title": "Partnership Act (Cap. 89:02)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695666957.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 48,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695666957.pdf",
+     "sha256": "2cdc49a66dbff470af645983b2b49357f23cc691f15b0f4c705861e60cb33e5a"
+    }
+   ]
+  },
+  {
+   "slug": "merchandise-marks",
+   "short": "Merchandise Marks Act",
+   "title": "Merchandise Marks Act (Cap. 90:04)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664721.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 17,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664721.pdf",
+     "sha256": "84b0f6c85a1b7d592480c0e16512b8904ec29bf48400a2ace0b3a2110acfa5ca"
+    }
+   ]
+  },
+  {
+   "slug": "business-names",
+   "short": "Business Names (Registration) Act",
+   "title": "Business Names (Registration) Act (Cap. 90:05)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664679.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 22,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664679.pdf",
+     "sha256": "631bfe14095a0837869f02b8fa6e0b9d29955f099ba4e45eb55476cda40c0515"
+    }
+   ]
+  },
+  {
+   "slug": "sale-of-goods",
+   "short": "Sale of Goods Act",
+   "title": "Sale of Goods Act (Cap. 90:10)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664580.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 59,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664580.pdf",
+     "sha256": "f5b2d5755ea8c51e354b41fd6f3f11dbd95211b0b1c1761a576565d7c5604656"
+    }
+   ]
+  },
+  {
+   "slug": "pledge-of-goods",
+   "short": "Pledge of Goods Act",
+   "title": "Pledge of Goods Act (Cap. 90:11)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664531.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 18,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664531.pdf",
+     "sha256": "5f0343b3f32151893236387492f19115ece38a18e88ed0e5bd7e00fe682652e8"
+    }
+   ]
+  },
+  {
+   "slug": "bills-of-sale",
+   "short": "Bills of Sale Act",
+   "title": "Bills of Sale Act (Cap. 90:12)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664487.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 29,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664487.pdf",
+     "sha256": "d4b14178d54348eec9c4d32102888c9c9098efaf329241819fb3f30d62a20e3d"
+    }
+   ]
+  },
+  {
+   "slug": "bills-of-exchange",
+   "short": "Bills of Exchange Act",
+   "title": "Bills of Exchange Act (Cap. 90:13)",
+   "url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664434.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 100,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 17 Cap. 89.02 - 91.011695664434.pdf",
+     "sha256": "dde4ff575b706ce96c593bd079d3817a81df6793dd9995e7cdd8dcf7cb4beaa2"
+    }
+   ]
+  },
+  {
+   "slug": "traders-breach-of-contract",
+   "short": "Traders (Breach of Contract) Act",
+   "title": "Traders (Breach of Contract) Act (Cap. 91:03)",
+   "url": "https://www.mola.gov.gy/laws/Volume 18 Cap. 91.02 - 96.011695664130.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 10,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 18 Cap. 91.02 - 96.011695664130.pdf",
+     "sha256": "0d0ee7d2aeeafe2881d2248e3aedc6cb4a9e88ba4ff0f81808ba4bd191ab52d4"
+    }
+   ]
+  },
+  {
+   "slug": "termination-of-employment",
+   "short": "Termination of Employment and Severance Pay Act",
+   "title": "Termination of Employment and Severance Pay Act (Cap. 96:01)",
+   "url": "https://www.mola.gov.gy/laws/Volume 18 Cap. 91.02 - 96.011695660952.pdf",
+   "versions": [
+    {
+     "from": "2012-12-31",
+     "units": 24,
+     "source_url": "https://www.mola.gov.gy/laws/Volume 18 Cap. 91.02 - 96.011695660952.pdf",
+     "sha256": "f7a950aeab2ce72c0152716a59a92015deeab158427673ea78b65d86307d18ae"
+    }
+   ]
+  }
+ ]
+}
