@@ -65,7 +65,8 @@ def check(c: dict, slug: str, ed: str = 'e2022') -> bool:
         left_out += words(' '.join(p.margin))
         if in_title and parse.ART_RE.match(p.text):
             in_title = False
-        if (in_title or p.heading or layout._is_heading(p.text) or parse.PLACEHOLDER.match(p.text)
+        if (in_title or p.heading or layout._is_heading(p.text) or p.text in parse.DROPPED
+                or parse.PLACEHOLDER.match(p.text)
                 or parse.RANGE_RE.match(p.text) or re.match(r'^\d+\s?\.\s*\[', p.text)):
             left_out += words(p.text)
     running = words(f'LAWS OF GUYANA Cap {act["title"]} L.R.O. Constitution of the Co-operative Republic of Guyana')
@@ -81,7 +82,8 @@ def check(c: dict, slug: str, ed: str = 'e2022') -> bool:
 
 def main() -> int:
     c = json.loads((HERE / 'corpus.json').read_text(encoding='utf-8'))
-    ok = [check(c, slug) for slug in ACTS]
+    parse.civil_law(), parse.criminal_law()   # fills parse.DROPPED (cross-headings left out on purpose)
+    ok =[check(c, slug) for slug in ACTS]
     if '--older' in sys.argv:   # the L.R.O. 1/2012 versions too (informational)
         for slug in ACTS:
             check(c, slug, 'e2012')

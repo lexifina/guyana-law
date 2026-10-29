@@ -123,6 +123,11 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         spans = [s for s in spans if s[1] > head_y and not re.match(r'\s*L\.\s?R\.\s?O\.', s[6])
                  and not FOOT_RE.match(s[6])]
         spans = [s for s in spans if not re.fullmatch(r'\s*_+\s*', s[6])]
+        # the running foot "L.R.O. 1/2022" whose number some 2022 PDFs split into spans ("1/202" + "2", Cap. 5:03):
+        # drop the digit and slash spans on the L.R.O. line, to its right
+        lro = [s for s in _spans(page) if re.match(r'\s*L\.\s?R\.\s?O\.', s[6]) and s[1] > 500]
+        spans = [s for s in spans if not any(abs(s[3] - f[3]) < 3 and s[0] >= f[2] - 1
+                                             and re.fullmatch(r'[\s\d/]+', s[6]) for f in lro)]
         normal = [s for s in spans if s[4] >= body_min]
         if not normal:
             continue

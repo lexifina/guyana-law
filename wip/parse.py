@@ -40,9 +40,10 @@ EDITIONS = {
 ART_RE = re.compile(r'^(\d{1,3})\s?([A-Z]{0,2})\s?\.\s*(.*)$')
 RANGE_RE = re.compile(r'^(\d{1,3})\s?\.?\s*-\s*(\d{1,3})\s?\.?\s*(\[.*)$')
 RANGE_SPLIT = re.compile(r'(?<=\])\s+(?=\d{1,3}\s?\.?\s*-\s*\d{1,3}\s?\.?\s*\[)')
-SCHED_RE = re.compile(r'^(?:(FIRST|SECOND|THIRD|FOURTH) )?SCHEDULE\b')
+RANGE_NOTE = re.compile(r'^Sections? (\d{1,3})\s?-\s?(\d{1,3}) repealed\b')
+SCHED_RE = re.compile(r'^(?:(FIRST|SECOND|THIRD|FOURTH|FIFTH|SIXTH) )?SCHEDULE\b')
 LONG_TITLE = re.compile(r'^(?:\S+ of \d{4}\s+)?An\s+Act\b')
-SCHED_NO = {None: 1, 'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4}
+SCHED_NO = {None: 1, 'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4, 'FIFTH': 5, 'SIXTH': 6}
 
 
 def art_key(n: int, s: str, prefix: str = 'art') -> str:
@@ -73,7 +74,10 @@ def segment(paras: list[layout.Para], prefix: str = 'art') -> tuple[dict, dict]:
                 units[cur], margins[cur] = [], list(p.margin)
             continue
         m_s = SCHED_RE.match(t)
-        if m_s and (p.heading or t.isupper() or mode in ('art', 'sch')):
+        # a bare "SCHEDULE" inside a schedule ends a heading ("PROVISIONS APPLYING TO PARTS I AND II OF THIS" /
+        # "SCHEDULE", Cap. 89:01); it starts no new schedule
+        if m_s and not (mode == 'sch' and m_s.group(1) is None and t == 'SCHEDULE') \
+                and (p.heading or t.isupper() or mode in ('art', 'sch')):
             mode, cur = 'sch', f'sch-{SCHED_NO[m_s.group(1)]}'
             units[cur], margins[cur] = [t], list(p.margin)
             continue
@@ -91,6 +95,11 @@ def segment(paras: list[layout.Para], prefix: str = 'art') -> tuple[dict, dict]:
                     k = art_key(n, '', prefix)
                     units[k], margins[k] = [m_r.group(3)], list(p.margin)
             cur, last, mode = None, _order(b, ''), 'art'
+            continue
+        m_n = RANGE_NOTE.match(t)
+        if m_n and last[0] < int(m_n.group(1)) <= int(m_n.group(2)):
+            # "Sections 286- 304 repealed by Act No. 21 of 1998" (Cap. 89:01): no text in force, the numbering goes on
+            cur, last, mode = None, _order(int(m_n.group(2)), ''), 'art'
             continue
         m_a = ART_RE.match(t)
         if m_a:
@@ -155,10 +164,12 @@ def tidy(line: str) -> str:
     return line
 
 
-def read_all(editions: dict | None = None, prefix: str = 'art') -> dict[str, tuple[dict, dict]]:
+def read_all(editions: dict | None = None, prefix: str = 'art', fix=None) -> dict[str, tuple[dict, dict]]:
+    """fix(ed, paragraphs) -> paragraphs: an optional per-act layout repair before segmentation (Cap. 89:01's form)."""
     out = {}
     for ed, (url, a, b, bm) in (editions or EDITIONS).items():
-        out[ed] = segment(layout.read_edition(url, ed, a, b, bm), prefix)
+        paras = layout.read_edition(url, ed, a, b, bm)
+        out[ed] = segment(fix(ed, paras) if fix else paras, prefix)
     texts = [l for u, _ in out.values() for ls in u.values() for l in ls]
     plain, hyph = vocabulary(texts)
     # words printed in at least two editions: the vocabulary used to split words a PDF glued together
@@ -228,9 +239,12 @@ def compare():
 
 # ------------------------------------------------------------------ units as files
 
-PLACEHOLDER = re.compile(r'^\[?[^\[\]]*\b(repealed|Repeated)\b[^\[\]]*\]?\.?$', re.I)
+# a repeal note: short (the longest printed is ~60 characters), so a one-paragraph section that only speaks of repeals
+# ("14. Where any written law ... is repealed, ...", Cap. 2:01) is text, not a note
+PLACEHOLDER = re.compile(r'^(?=.{0,100}$)\[?[^\[\]]*\b(repealed|Repeated)\b[^\[\]]*\]?\.?$', re.I)
 SCHED_REF = re.compile(r'^Articles? [0-9A-Z]+(?:\(\d+\))?(?:(?:,| and) ?[0-9A-Z]+(?:\(\d+\))?)*$')
-SCHED_NAMES = {1: 'First Schedule', 2: 'Second Schedule', 3: 'Third Schedule', 4: 'Fourth Schedule'}
+SCHED_NAMES = {1: 'First Schedule', 2: 'Second Schedule', 3: 'Third Schedule', 4: 'Fourth Schedule',
+               5: 'Fifth Schedule', 6: 'Sixth Schedule'}
 
 
 def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
@@ -254,6 +268,40 @@ def clean_units(raw: dict[str, list[str]]) -> dict[str, list[str]]:
                     split.append(l)
             lines = split
         out[k] = lines
+    return out
+
+
+DROPPED: set[str] = set()   # the cross-headings tidy_sections left out (verify.py counts them as left out)
+CROSS_HEAD = re.compile(r"^(\((?:i|ii|iii|iv|v|vi|vii|viii|ix|x)\) )?[A-Z][A-Za-z,'()\- ]{1,58}$")
+
+
+def tidy_sections(raw: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Two layout slips of the chapter PDFs (Acts with sections), fixed the same way in every edition (DECISIONS):
+    - the italic cross-heading set between two sections ("Conspiracy", "(i) Appeals from the Court") is read as the
+      last line of the section before it: dropped, like the Part headings;
+    - a section number printed without its full stop ("152 The Court shall ...", Cap. 10:01) is read as a line of the
+      section before it: split into its own section when that number is the next one and absent."""
+    out = {k: list(v) for k, v in raw.items()}
+    for k in list(out):
+        if not k.startswith('sec-'):
+            continue
+        lines = out[k]
+        while len(lines) > 1 and CROSS_HEAD.match(lines[-1]) and not re.search(r'[.;:,]$', lines[-1]):
+            DROPPED.add(lines.pop())
+        km = re.match(r'sec-(\d+)([a-z]*)', k)
+        n, suf = int(km.group(1)), km.group(2)
+        # the next number ("152 The Court", Cap. 10:01), or the next letter after a lettered one ("93B In any", Cap. 5:03)
+        nexts = [(art_key(n + 1, '', 'sec'), f'{n + 1}')]
+        if len(suf) == 1 and suf < 'z':
+            s2 = chr(ord(suf) + 1)
+            nexts.append((art_key(n, s2, 'sec'), f'{n}{s2.upper()}'))
+        for nxt, printed in nexts:
+            for i, line in enumerate(lines):
+                m = re.match(rf'^{printed} (?=[A-Z])', line)
+                if m and nxt not in out and i > 0:
+                    out[nxt] = [line[m.end():]] + lines[i + 1:]
+                    del lines[i:]
+                    break
     return out
 
 
@@ -495,8 +543,8 @@ def other_laws() -> dict:
 def two_editions(slug: str, short: str, title: str, editions: dict, first: str, amenders: list[str],
                  notes: tuple[str, str]) -> dict:
     eds = read_all(editions, 'sec')
-    u12 = clean_units(eds['e2012'][0])
-    u22 = clean_units(eds['e2022'][0])
+    u12 = clean_units(tidy_sections(eds['e2012'][0]))
+    u22 = clean_units(tidy_sections(eds['e2022'][0]))
     url12, url22 = editions['e2012'][0], editions['e2022'][0]
     versions = [{'from': '2012-12-31', 'source_url': url12, 'sha256': sha(url12), 'units': as_units(u12),
                  'credits': {}, 'note': notes[0]}]
@@ -551,6 +599,7 @@ DECISIONS = [
     'Act 12 of 2021 (Civil Law of Guyana (Amendment) Act 2021, Gazette 11 August 2021) substitutes section 5(1)(b) of Cap. 6:01, and Act 10 of 2025 (Criminal Law Miscellaneous Act 2025, Gazette 5 June 2025) is later than the 2022 edition. Both Gazette prints are scans without a text layer, and no model may write legal text, so neither is applied; the 2022 revised edition does not include Act 12 of 2021 either. Section 5(1)(b) of the Civil Law Act is therefore shown in its text before that Act.',
     'Sections printed only as a repeal note ("Repealed by Act No. 7 of 2010", some printed "Repeated by" in L.R.O. 1/2012) have no file, and the editor\'s notes printed in the body of L.R.O. 1/2012 of Cap. 8:01 ("(is to be removed)", "("to" to be removed)") are left out. Long titles and the arrangement of sections are left out; each file starts with "# Section N".',
     'The front page of Cap. 8:01 lists "25 of 1793" among the amending laws; the side note to section 2 prints it as "25 of 1973", which is used.',
+    'Caps. 6:01 and 8:01 get the same layout fix as the further chapters (parse.py tidy_sections, in both editions): the italic cross-heading between two sections, which the reader takes as the last line of the section before it, is dropped like the Part headings. In Cap. 8:01 that is five headings ("Conspiracy" after s. 31, "Injury to Growing Things" after s. 114, "False Pretences" after s. 193, "Counterfeiting Coin" after s. 285, "Supplemental Provisions" after s. 302); Cap. 6:01 has none. No other line changes.',
 ]
 
 AI_USE = [

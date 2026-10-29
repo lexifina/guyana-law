@@ -21,7 +21,7 @@
    "name": "Laws of Guyana, Ministry of Legal Affairs (L.R.O. 1/2022)",
    "url": "https://www.mola.gov.gy/laws-of-guyana",
    "retrieved": "2026-10-28",
-   "requests": 58,
+   "requests": 66,
    "licence": "none stated",
    "notes": "one PDF per chapter, current revised edition only; robots.txt allows all"
   },
@@ -29,7 +29,7 @@
    "name": "Acts of Parliament, Parliament of Guyana",
    "url": "https://parliament.gov.gy/publications/acts-of-parliament/",
    "retrieved": "2026-10-28",
-   "requests": 212,
+   "requests": 222,
    "licence": "none stated",
    "notes": "Acts as published in the Official Gazette, 1928-2025, PDF"
   },
@@ -37,7 +37,7 @@
    "name": "Internet Archive Wayback Machine (earlier editions of Cap. 1:01)",
    "url": "https://web.archive.org/",
    "retrieved": "2026-10-28",
-   "requests": 15,
+   "requests": 25,
    "licence": "none stated",
    "notes": "the 2010 consolidation (legalaffairs.gov.gy, captured 2012-12-26) and L.R.O. 1/2012 (captured 2016-01-19, 2021-04-04 and 2022-03-08, byte-identical)"
   }
@@ -9909,7 +9909,7 @@
       "sec-031": {
        "label": "s. 31",
        "kind": "section",
-       "text": "# Section 31\nEveryone who aids, abets, counsels, or procures the commission of any misdemeanour, whether it is a misdemeanour at common law or by virtue of any written law for the time being in force, may be indicted, tried, convicted, and punished in all respects as a principal offender.\nConspiracy\n"
+       "text": "# Section 31\nEveryone who aids, abets, counsels, or procures the commission of any misdemeanour, whether it is a misdemeanour at common law or by virtue of any written law for the time being in force, may be indicted, tried, convicted, and punished in all respects as a principal offender.\n"
       },
       "sec-032": {
        "label": "s. 32",
@@ -10234,7 +10234,7 @@
       "sec-114": {
        "label": "s. 114",
        "kind": "section",
-       "text": "# Section 114\nIn this Title, unless the context otherwise requires, the expression \"explosive substance\" includes any materials for making any explosive substance; also any apparatus, machine, implement, or materials used or intended to be used, or adapted, for causing, or aiding in causing, any explosion in or with any explosive substance; and also any part of that apparatus, machine, or implement, or of those materials.\nInjury to Growing Things\n"
+       "text": "# Section 114\nIn this Title, unless the context otherwise requires, the expression \"explosive substance\" includes any materials for making any explosive substance; also any apparatus, machine, implement, or materials used or intended to be used, or adapted, for causing, or aiding in causing, any explosion in or with any explosive substance; and also any part of that apparatus, machine, or implement, or of those materials.\n"
       },
       "sec-115": {
        "label": "s. 115",
@@ -10629,7 +10629,7 @@
       "sec-193": {
        "label": "s. 193",
        "kind": "section",
-       "text": "# Section 193\n(1) If, on the trial of any person indicted for embezzlement or fraudulent application or disposition as hereinbefore provided, it is proved that he took the property in question in any manner amounting in law to larceny, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of embezzlement or fraudulent application or disposition but is guilty of simple larceny, or of larceny as a clerk or servant, or a person employed for the purpose or in the capacity of a clerk or servant, or as a person employed in the public service or in the police force, or as a co-partner or co-owner of property, as the case may be; and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that larceny; and if, on the trial of any person indicted for larceny, it is proved that he took the property in question in any manner amounting in law to embezzlement or fraudulent application or disposition as hereinbefore provided, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of larceny but is guilty of embezzlement or fraudulent application or disposition, as the case may be, and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that embezzlement or fraudulent application or disposition.\n(2) No person so tried for embezzlement, fraudulent application or disposition, or larceny, as aforesaid shall be liable to be afterwards prosecuted for larceny, fraudulent application or disposition, or embezzlement, upon the same facts.\nFalse Pretences\n"
+       "text": "# Section 193\n(1) If, on the trial of any person indicted for embezzlement or fraudulent application or disposition as hereinbefore provided, it is proved that he took the property in question in any manner amounting in law to larceny, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of embezzlement or fraudulent application or disposition but is guilty of simple larceny, or of larceny as a clerk or servant, or a person employed for the purpose or in the capacity of a clerk or servant, or as a person employed in the public service or in the police force, or as a co-partner or co-owner of property, as the case may be; and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that larceny; and if, on the trial of any person indicted for larceny, it is proved that he took the property in question in any manner amounting in law to embezzlement or fraudulent application or disposition as hereinbefore provided, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of larceny but is guilty of embezzlement or fraudulent application or disposition, as the case may be, and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that embezzlement or fraudulent application or disposition.\n(2) No person so tried for embezzlement, fraudulent application or disposition, or larceny, as aforesaid shall be liable to be afterwards prosecuted for larceny, fraudulent application or disposition, or embezzlement, upon the same facts.\n"
       },
       "sec-194": {
        "label": "s. 194",
@@ -11089,7 +11089,7 @@
       "sec-285": {
        "label": "s. 285",
        "kind": "section",
-       "text": "# Section 285\nThis Title shall apply in relation to foreign coin as it applies in relation to the coins of Guyana.\nCounterfeiting Coin\n"
+       "text": "# Section 285\nThis Title shall apply in relation to foreign coin as it applies in relation to the coins of Guyana.\n"
       },
       "sec-286": {
        "label": "s. 286",
@@ -11174,7 +11174,7 @@
       "sec-302": {
        "label": "s. 302",
        "kind": "section",
-       "text": "# Section 302\n(1) Everyone who, having been once summarily convicted before a magistrate or a magistrate's court thereof, defaces any current gold, silver, or copper coin by stamping thereon any name, word, or number, whether the coin is or is not thereby diminished or lightened, shall be guilty of a misdemeanour and liable to imprisonment for one year.\n(2) No tender of payment in money made in any gold, or silver, or copper coin defaced by that stamping shall be allowed to be a legal tender.\nSupplemental Provisions\n"
+       "text": "# Section 302\n(1) Everyone who, having been once summarily convicted before a magistrate or a magistrate's court thereof, defaces any current gold, silver, or copper coin by stamping thereon any name, word, or number, whether the coin is or is not thereby diminished or lightened, shall be guilty of a misdemeanour and liable to imprisonment for one year.\n(2) No tender of payment in money made in any gold, or silver, or copper coin defaced by that stamping shall be allowed to be a legal tender.\n"
       },
       "sec-303": {
        "label": "s. 303",
@@ -11608,7 +11608,7 @@
       "sec-031": {
        "label": "s. 31",
        "kind": "section",
-       "text": "# Section 31\nEveryone who aids, abets, counsels, or procures the commission of any misdemeanour, whether it is a misdemeanour at common law or by virtue of any written law for the time being in force, may be indicted, tried, convicted, and punished in all respects as a principal offender.\nConspiracy\n"
+       "text": "# Section 31\nEveryone who aids, abets, counsels, or procures the commission of any misdemeanour, whether it is a misdemeanour at common law or by virtue of any written law for the time being in force, may be indicted, tried, convicted, and punished in all respects as a principal offender.\n"
       },
       "sec-032": {
        "label": "s. 32",
@@ -11928,7 +11928,7 @@
       "sec-114": {
        "label": "s. 114",
        "kind": "section",
-       "text": "# Section 114\nIn this Title, unless the context otherwise requires, the expression \"explosive substance\" includes any materials for making any explosive substance; also any apparatus, machine, implement, or materials used or intended to be used, or adapted, for causing, or aiding in causing, any explosion in or with any explosive substance; and also any part of that apparatus, machine, or implement, or of those materials.\nInjury to Growing Things\n"
+       "text": "# Section 114\nIn this Title, unless the context otherwise requires, the expression \"explosive substance\" includes any materials for making any explosive substance; also any apparatus, machine, implement, or materials used or intended to be used, or adapted, for causing, or aiding in causing, any explosion in or with any explosive substance; and also any part of that apparatus, machine, or implement, or of those materials.\n"
       },
       "sec-115": {
        "label": "s. 115",
@@ -12323,7 +12323,7 @@
       "sec-193": {
        "label": "s. 193",
        "kind": "section",
-       "text": "# Section 193\n(1) If, on the trial of any person indicted for embezzlement or fraudulent application or disposition as hereinbefore provided, it is proved that he took the property in question in any manner amounting in law to larceny, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of embezzlement or fraudulent application or disposition but is guilty of simple larceny, or of larceny as a clerk or servant, or a person employed for the purpose or in the capacity of a clerk or servant, or as a person employed in the public service or in the police force, or as a co-partner or co-owner of property, as the case may be; and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that larceny; and if, on the trial of any person indicted for larceny, it is proved that he took the property in question in any manner amounting in law to embezzlement or fraudulent application or disposition as hereinbefore provided, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of larceny but is guilty of embezzlement or fraudulent application or disposition, as the case may be, and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that embezzlement or fraudulent application or disposition.\n(2) No person so tried for embezzlement, fraudulent application or disposition, or larceny, as aforesaid shall be liable to be afterwards prosecuted for larceny, fraudulent application or disposition, or embezzlement, upon the same facts.\nFalse Pretences\n"
+       "text": "# Section 193\n(1) If, on the trial of any person indicted for embezzlement or fraudulent application or disposition as hereinbefore provided, it is proved that he took the property in question in any manner amounting in law to larceny, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of embezzlement or fraudulent application or disposition but is guilty of simple larceny, or of larceny as a clerk or servant, or a person employed for the purpose or in the capacity of a clerk or servant, or as a person employed in the public service or in the police force, or as a co-partner or co-owner of property, as the case may be; and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that larceny; and if, on the trial of any person indicted for larceny, it is proved that he took the property in question in any manner amounting in law to embezzlement or fraudulent application or disposition as hereinbefore provided, he shall not by reason thereof be entitled to be acquitted, but the jury shall be at liberty to return as their verdict that he is not guilty of larceny but is guilty of embezzlement or fraudulent application or disposition, as the case may be, and thereupon he shall be liable to be punished in the same manner as if he had been convicted on an indictment for that embezzlement or fraudulent application or disposition.\n(2) No person so tried for embezzlement, fraudulent application or disposition, or larceny, as aforesaid shall be liable to be afterwards prosecuted for larceny, fraudulent application or disposition, or embezzlement, upon the same facts.\n"
       },
       "sec-194": {
        "label": "s. 194",
@@ -12783,7 +12783,7 @@
       "sec-285": {
        "label": "s. 285",
        "kind": "section",
-       "text": "# Section 285\nThis Title shall apply in relation to foreign coin as it applies in relation to the coins of Guyana.\nCounterfeiting Coin\n"
+       "text": "# Section 285\nThis Title shall apply in relation to foreign coin as it applies in relation to the coins of Guyana.\n"
       },
       "sec-286": {
        "label": "s. 286",
@@ -12868,7 +12868,7 @@
       "sec-302": {
        "label": "s. 302",
        "kind": "section",
-       "text": "# Section 302\n(1) Everyone who, having been once summarily convicted before a magistrate or a magistrate's court thereof, defaces any current gold, silver, or copper coin by stamping thereon any name, word, or number, whether the coin is or is not thereby diminished or lightened, shall be guilty of a misdemeanour and liable to imprisonment for one year.\n(2) No tender of payment in money made in any gold, or silver, or copper coin defaced by that stamping shall be allowed to be a legal tender.\nSupplemental Provisions\n"
+       "text": "# Section 302\n(1) Everyone who, having been once summarily convicted before a magistrate or a magistrate's court thereof, defaces any current gold, silver, or copper coin by stamping thereon any name, word, or number, whether the coin is or is not thereby diminished or lightened, shall be guilty of a misdemeanour and liable to imprisonment for one year.\n(2) No tender of payment in money made in any gold, or silver, or copper coin defaced by that stamping shall be allowed to be a legal tender.\n"
       },
       "sec-303": {
        "label": "s. 303",
@@ -13169,7 +13169,8 @@
   "Civil Law of Guyana Act (Cap. 6:01) and Criminal Law (Offences) Act (Cap. 8:01): the only texts online are the revised editions L.R.O. 1/2012 (read from the Internet Archive) and L.R.O. 1/2022 (mola.gov.gy), so each starts as \"oldest version available\" on 2012-12-31, and differences in the 2022 edition are unexplained changes on 2022-12-31. The Civil Law Act prints the same text in both editions, so it has one version.",
   "Act 12 of 2021 (Civil Law of Guyana (Amendment) Act 2021, Gazette 11 August 2021) substitutes section 5(1)(b) of Cap. 6:01, and Act 10 of 2025 (Criminal Law Miscellaneous Act 2025, Gazette 5 June 2025) is later than the 2022 edition. Both Gazette prints are scans without a text layer, and no model may write legal text, so neither is applied; the 2022 revised edition does not include Act 12 of 2021 either. Section 5(1)(b) of the Civil Law Act is therefore shown in its text before that Act.",
   "Sections printed only as a repeal note (\"Repealed by Act No. 7 of 2010\", some printed \"Repeated by\" in L.R.O. 1/2012) have no file, and the editor's notes printed in the body of L.R.O. 1/2012 of Cap. 8:01 (\"(is to be removed)\", \"(\"to\" to be removed)\") are left out. Long titles and the arrangement of sections are left out; each file starts with \"# Section N\".",
-  "The front page of Cap. 8:01 lists \"25 of 1793\" among the amending laws; the side note to section 2 prints it as \"25 of 1973\", which is used."
+  "The front page of Cap. 8:01 lists \"25 of 1793\" among the amending laws; the side note to section 2 prints it as \"25 of 1973\", which is used.",
+  "Caps. 6:01 and 8:01 get the same layout fix as the further chapters (parse.py tidy_sections, in both editions): the italic cross-heading between two sections, which the reader takes as the last line of the section before it, is dropped like the Part headings. In Cap. 8:01 that is five headings (\"Conspiracy\" after s. 31, \"Injury to Growing Things\" after s. 114, \"False Pretences\" after s. 193, \"Counterfeiting Coin\" after s. 285, \"Supplemental Provisions\" after s. 302); Cap. 6:01 has none. No other line changes."
  ],
  "ai_use": [
   "Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote fetch.py, sources.py, layout.py and parse.py and chose the sources and editions; it did not write or alter any legal text. parse.py is deterministic and runs no model; every line of law comes from an official PDF in the cache."
