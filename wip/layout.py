@@ -118,7 +118,8 @@ def read_edition(url: str, ed: str, first_page: int, last_page: int, body_min: f
         top = [s for s in spans if s[1] < 140]
         head_y = 100
         for r in _rows(top):
-            if re.search(r'Cap\.\s*\d+\s*:\s*\d+', ' '.join(x[6] for x in r)):
+            # a citation in the text ("Act, Cap. 3:05, the proper allowance", Cap. 3:05 Sch.) is not the head
+            if re.search(r'Cap\.\s*\d+\s*:\s*\d+(?!\d)(?!\s*,)', ' '.join(x[6] for x in r)):
                 head_y = max(x[3] for x in r) + 2
         spans = [s for s in spans if s[1] > head_y and not re.match(r'\s*L\.\s?R\.\s?O\.', s[6])
                  and not FOOT_RE.match(s[6])]

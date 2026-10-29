@@ -43,7 +43,7 @@ def main(argv: list[str]) -> int:
     ok = []
     for ch in todo:
         ed = 'e2022' if 'e2022' in ch['editions'] else 'e2012'
-        verify.ACTS[ch['slug']] = (ch['editions'][ed], 'sec', r'An\s+Act')
+        verify.ACTS[ch['slug']] = (ch['editions'][ed], 'sec', ch.get('marker', r'An\s+Act'))
         ok.append(verify.check(c, ch['slug']))
     if older:
         for ch in todo:
@@ -52,7 +52,7 @@ def main(argv: list[str]) -> int:
             a = next(x for x in c['acts'] if x['slug'] == ch['slug'])
             url = ch['editions']['e2012'][0]
             v = next(x for x in a['versions'] if x['source_url'] == url)
-            verify.ACTS[ch['slug']] = (ch['editions']['e2012'], 'sec', r'An\s+Act')
+            verify.ACTS[ch['slug']] = (ch['editions']['e2012'], 'sec', ch.get('marker', r'An\s+Act'))
             print('[2012 version against its own L.R.O. 1/2012 PDF]')
             verify.check({'acts': [{**a, 'versions': [v]}]}, ch['slug'])
     return 0 if all(ok) else 1
