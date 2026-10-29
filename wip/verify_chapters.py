@@ -1,6 +1,7 @@
 """verify.py's word-count check for the further chapters (corpus.d/50-chapters.json, 55-companies.json,
-60-chapters.json): each act's latest version against today's official text on mola.gov.gy (L.R.O. 1/2022 where the
-Ministry serves it; the L.R.O. 1/2012 PDF it still serves for Caps. 10:01, 89:01 and 98:01).
+60-chapters.json, and chapters_extra.py's 70-summary-jurisdiction.json, 75-family.json, 80-land.json): each
+act's latest version against today's official text on mola.gov.gy (L.R.O. 1/2022 where the Ministry serves it; the
+L.R.O. 1/2012 PDF it still serves for Caps. 10:01, 89:01, 98:01 and the later volumes).
 
     python -X utf8 verify_chapters.py [part.json] [--older]     (default: corpus.d/50-chapters.json)
 
@@ -13,6 +14,7 @@ import sys
 from pathlib import Path
 
 import chapters
+import chapters_extra
 import chapters_more
 import companies
 import verify
@@ -25,13 +27,15 @@ def main(argv: list[str]) -> int:
     argv = [a for a in argv if a != '--older']
     part = Path(argv[0]) if argv else HERE / 'corpus.d' / '50-chapters.json'
     c = json.loads(part.read_text(encoding='utf-8'))
-    known = {ch['slug']: ch for ch in chapters.CHAPTERS + chapters_more.MORE + [companies.CH]}
+    known = {ch['slug']: ch for ch in chapters.CHAPTERS + chapters_more.MORE + [companies.CH] + chapters_extra.ALL}
     todo = [known[a['slug']] for a in c['acts']]
     for ch in todo:   # fills parse.DROPPED (the cross-headings left out on purpose)
         if ch is companies.CH:
             companies.units()
         elif ch in chapters_more.MORE:
             chapters_more.act(ch)
+        elif ch in chapters_extra.ALL:
+            chapters_extra.act(ch)
         else:
             chapters.act(ch)
     orig = verify.layout._is_heading
@@ -43,7 +47,7 @@ def main(argv: list[str]) -> int:
         ok.append(verify.check(c, ch['slug']))
     if older:
         for ch in todo:
-            if 'e2022' not in ch['editions']:
+            if 'e2022' not in ch['editions'] or 'e2012' not in ch['editions']:
                 continue
             a = next(x for x in c['acts'] if x['slug'] == ch['slug'])
             url = ch['editions']['e2012'][0]
