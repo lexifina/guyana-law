@@ -1,0 +1,80 @@
+{
+ "parts": {
+  "50-chapters.json": {
+   "acts": [
+    "criminal-law-procedure",
+    "high-court",
+    "labour"
+   ],
+   "sha256": "a93e63c98608443b6bdbf76190f38fd50a400196fa15056fe17823ecadf1a35c"
+  },
+  "55-companies.json": {
+   "acts": [
+    "companies"
+   ],
+   "sha256": "238418fe9e9b719c3c258b29f8c9767d1daa22e08e9f07019b8dc1d48472f9d7"
+  },
+  "60-chapters.json": {
+   "acts": [
+    "defamation",
+    "evidence",
+    "interpretation",
+    "limitation"
+   ],
+   "sha256": "ce659122113e651b7bbafd04f609a2c35199ecd823687e19e0d149d90ddd378f"
+  },
+  "70-summary-jurisdiction.json": {
+   "acts": [
+    "summary-jurisdiction-appeals",
+    "summary-jurisdiction-magistrates",
+    "summary-jurisdiction-petty-debt",
+    "summary-jurisdiction-procedure"
+   ],
+   "sha256": "6334b1404d8366c842a9e1d39848d57524d749d16e437e2a6fb92d338cb07293"
+  },
+  "75-family.json": {
+   "acts": [
+    "domestic-violence",
+    "family-dependants-provision",
+    "maintenance",
+    "matrimonial-causes",
+    "status-of-children",
+    "wills"
+   ],
+   "sha256": "205b6f1ba710afe0883f88d4304ad3876e6f39bad2f3b3dc7e1bd6982b3f1c6f"
+  },
+  "80-land.json": {
+   "acts": [
+    "deeds-registry",
+    "land-registry",
+    "landlord-and-tenant",
+    "rent-restriction",
+    "state-lands",
+    "title-to-land"
+   ],
+   "sha256": "9d927e6a86f57719751502340a46124f10763e0ce5ee9d16ec321c13fc322e78"
+  },
+  "85-commercial.json": {
+   "acts": [
+    "bills-of-exchange",
+    "bills-of-sale",
+    "business-names",
+    "merchandise-marks",
+    "partnership",
+    "pledge-of-goods",
+    "sale-of-goods",
+    "termination-of-employment",
+    "traders-breach-of-contract"
+   ],
+   "sha256": "fb294c8236d2f2a6e81d4fc1898c11dea2862602d2e04cebb431a52e0da7ea7d"
+  },
+  "90-constitution-instruments.json": {
+   "acts": [
+    "constitution-amendment-2015",
+    "constitution-amendment-2016"
+   ],
+   "sha256": "f94a78ae85123ad8f85c56d90dc11c34dd30c5f8abd81fae111c3a3066a89223"
+  }
+ },
+ "schema": 1
+}
