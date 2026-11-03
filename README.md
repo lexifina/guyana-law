@@ -23,12 +23,12 @@ It follows the shared design of [lexifina/global-law](https://github.com/lexifin
 | `summary-jurisdiction-magistrates/` | Summary Jurisdiction (Magistrates) Act (Cap. 3:05, Act 10 of 1893) | 1 | The revised edition L.R.O. 1/2012; the 2022 edition prints the same text |
 | `summary-jurisdiction-petty-debt/` | Summary Jurisdiction (Petty Debt) Act (Cap. 7:01, Act 11 of 1893) | 1 | The revised edition L.R.O. 1/2012; the 2022 edition prints the same text |
 | `summary-jurisdiction-procedure/` | Summary Jurisdiction (Procedure) Act (Cap. 10:02, Act 12 of 1893) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
-| `domestic-violence/` | Domestic Violence Act (Cap. 11:09, Act 18 of 1996) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
+| `domestic-violence/` | Domestic Violence Act (Cap. 11:09, Act 18 of 1996) | 1 | Official source text from 1996-12-31; 42 section marginal captions restored under Cap. 2:01 s.57(3) |
 | `wills/` | Wills Act (Cap. 12:02, Act 12 of 1906) | 1 | The revised edition L.R.O. 1/2012, still served as current. **Act 21 of 2024 is not applied:** see below |
 | `family-dependants-provision/` | Family and Dependants Provision Act (Cap. 12:24, Act 22 of 1990) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
 | `matrimonial-causes/` | Matrimonial Causes Act (Cap. 45:02, Act 34 of 1919) | 1 | The revised edition L.R.O. 1/2012, still served as current. **Act 13 of 2024 is not applied:** see below |
 | `maintenance/` | Maintenance Act (Cap. 45:03, Act 14 of 1903) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
-| `status-of-children/` | Status of Children Act (Cap. 46:05, Act 19 of 2009) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
+| `status-of-children/` | Status of Children Act (Cap. 46:05, Act 19 of 2009) | 1 | Official source text from 2010-05-31; 27 section marginal captions restored under Cap. 2:01 s.57(3) |
 | `deeds-registry/` | Deeds Registry Act (Cap. 5:01, Act 17 of 1919) | 1 | The revised edition L.R.O. 1/2022 (the archived 2012 edition already lists Act 5 of 2014, so it cannot be dated) |
 | `land-registry/` | Land Registry Act (Cap. 5:02, Act 18 of 1959) | 1 | The revised edition L.R.O. 1/2012; the 2022 edition prints the same text |
 | `title-to-land/` | Title to Land (Prescription and Limitation) Act (Cap. 60:02, Act 62 of 1952) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
