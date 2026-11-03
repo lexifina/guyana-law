@@ -24,6 +24,7 @@ This file is written by the build on 2026-11-03, the day the source data was ret
 | Laws of Guyana, Ministry of Legal Affairs (chapter PDFs of Caps. 5:01, 5:02, 60:02, 61:01, 62:01, 36:23) | <https://www.mola.gov.gy/laws-of-guyana> | 2026-10-29 | none stated |
 | Internet Archive Wayback Machine (L.R.O. 1/2012 PDFs of Caps. 5:01, 5:02, mola.gov.gy/sites/default/files) | <https://web.archive.org/> | 2026-10-29 | none stated |
 | Laws of Guyana, Ministry of Legal Affairs (chapter PDFs of Caps. 89:02, 90:04, 90:05, 90:10, 90:11, 90:12, 90:13, 91:03, 96:01) | <https://www.mola.gov.gy/laws-of-guyana> | 2026-10-29 | none stated |
+| Parliament of Guyana: official Gazette Constitution amendment instruments | <https://parliament.gov.gy/publications/acts-of-parliament/> | 2026-11-03 | Official legal texts; no reuse licence stated on the publisher homepage. |
 
 Every word of law in this repository comes from these sources. Lexifina reads them and records each act's dated versions, and the laws that made each change, in one corpus file. This repository is built from that file.
 
@@ -67,12 +68,14 @@ Every word of law in this repository comes from these sources. Lexifina reads th
 | `bills-of-exchange` | Bills of Exchange Act (Cap. 90:13) | 1 | 2012-12-31 to 2012-12-31 |
 | `traders-breach-of-contract` | Traders (Breach of Contract) Act (Cap. 91:03) | 1 | 2012-12-31 to 2012-12-31 |
 | `termination-of-employment` | Termination of Employment and Severance Pay Act (Cap. 96:01) | 1 | 2012-12-31 to 2012-12-31 |
+| `constitution-amendment-2015` | Constitution (Amendment) Act 2015 | 1 | 2015-07-10 to 2015-07-10 |
+| `constitution-amendment-2016` | Constitution (Amendment) Act 2016 | 1 | 2016-01-11 to 2016-01-11 |
 
-The build made 45 commits:
+The build made 47 commits:
 
 | Commits | Kind |
 | ---: | --- |
-| 36 | first version of an act |
+| 38 | first version of an act |
 | 3 | one law on its in-force day |
 | 6 | changes no amendment note explains, credited to the publisher |
 
@@ -80,7 +83,7 @@ Other counts:
 - 0 commits on the branch `futuro`: laws not yet in force on 2026-11-03.
 - 0 commits dated 1 January 1970: in force before 1970, with the real day in their `In-force` trailer.
 - 319 laws in the record.
-- 49 tags.
+- 51 tags.
 
 ## Dates
 
@@ -92,15 +95,15 @@ When a law gives no date of its own, the default rule applies: Interpretation an
 
 `tools/build.py` turns the corpus into this history in one pass: one commit per law, on the day it took effect. The same corpus always gives the same commit hashes. `tools/check_repo.py` reads every version back from git and compares it with the corpus. `tools/on.py` shows the law as it stood on any date. The corpus format is described in `tools/SCHEMA.md`.
 
-- Corpus: sha256 `f7fc868139978229a616a289210c84e7fe3e1ae81aa5cb6dc9dbaf29af3fc0b0` (5323211 bytes).
-- Builder blob hashes (`git hash-object`): `build.py` `900da0d33bfd1ef455267fb4dcef7961fd5acc9c`, `check.py` `5d719354ea4c62d240c93d2cae446307d81d9e81`, `on.py` `aff48cf1b68d50c7ba8f399ca32261871c301824`.
+- Corpus: sha256 `57fc703a8c41d321e3b7ba4c9d1afb5e8f3868dcbdb01f62b03a984214466f57` (5327637 bytes).
+- Builder blob hashes (`git hash-object`): `build.py` `5d0eabdf207e7a114e8dbc8112ed3b044537b711`, `check.py` `5d719354ea4c62d240c93d2cae446307d81d9e81`, `on.py` `aff48cf1b68d50c7ba8f399ca32261871c301824`.
 - Python 3.14.4; git version 2.53.0.
 
 ## Checks
 
-45 versions of 36 acts read back from git on the day each took effect and on the day before: 0 mismatches. Trailers: 0 commits whose trailers git cannot parse. Health: 0 merge commits on main, 0 commit dates that go backwards, 0 commits dated after the build.
+Not yet run for this build.
 
-A second build from the same corpus into an empty folder gave identical hashes for all 45 history commits and 48 tags (history tip `6227120969289203e0dc2478270c989dee392d91`).
+No second build of this corpus has been compared yet.
 
 ## Decisions made by hand
 
@@ -163,6 +166,9 @@ A second build from the same corpus into an empty folder gave identical hashes f
 - Commercial and employment chapters (Partnership Act Cap. 89:02, Merchandise Marks Act Cap. 90:04, Business Names (Registration) Act Cap. 90:05, Sale of Goods Act Cap. 90:10, Pledge of Goods Act Cap. 90:11, Bills of Sale Act Cap. 90:12, Bills of Exchange Act Cap. 90:13, Traders (Breach of Contract) Act Cap. 91:03, Termination of Employment and Severance Pay Act Cap. 96:01): mola.gov.gy still serves each in L.R.O. 1/2012, so each has one version, 2012-12-31. The Parliament index of Acts names no later Act amending any of them (searched by title); it has gaps, so later amendments may exist that no source online shows.
 - Layout repair in this part: the side note of s. 16 of Cap. 90:10 ("Sale by sample.") is set in body-size type and was read into the section's first line; it is taken out, so the section reads as printed.
 - Not added from this group: the Trade Marks Act Cap. 90:01 (its 203-page PDF is mostly forms and subsidiary legislation, left for a later pass); the Money Lenders Act Cap. 91:05 (the forms of its Second Schedule are a ledger table with turned headings and two pages printed only as images, which are not read without OCR).
+- Acts 2 of 2015 and 1 of 2016 are represented as separate historical amendment instruments, each with two section files. They do not replace any Constitution version.
+- In-force dates are 10 July 2015 and 11 January 2016, printed on each official Gazette cover. Section 1 of each instrument gives its short title and no special commencement; the publication default in Interpretation and General Clauses Act section 15 applies. The Parliament listing dates differ and are not used.
+- Section wording, numbers and marginal captions are preserved from the official PDF text layer; marginal notes form part of the written law under Interpretation and General Clauses Act section 57(3). Each body paragraph or entity item has its own line. Only Gazette running headers, arrangement, long title, enacting formula and certification are outside these section files.
 
 ## What AI did and did not do
 
@@ -181,3 +187,4 @@ Model use at data-build time:
 - Family law chapters: Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote Lexifina's code, chose the chapters and page ranges and read the amending-law lists from the front pages (by word position, checked against the page); it did not write or alter any legal text.
 - Land chapters: Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote Lexifina's code, chose the chapters and page ranges and read the amending-law lists from the front pages (by word position, checked against the page); it did not write or alter any legal text.
 - Corpus part 85-commercial: Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote Lexifina's code, chose the chapters and page ranges and read the amending-law lists from the front pages (checked against the page text); it did not write or alter any legal text.
+- GPT-6 wrote the parser and validation code, selected two official instruments and inspected their page images. It did not write or amend legal wording.

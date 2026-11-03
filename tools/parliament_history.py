@@ -25,13 +25,19 @@ def build(cache):
         assert len(doc) == 2
         page = doc[1].get_text()
         body = re.search(r'Enacted by the Parliament of Guyana:-\s*(.*?)\s*Passed by the National Assembly', page, re.S).group(1)
+        notes = re.search(r'(Short title\..*?)\s*Enacted by the Parliament', page, re.S).group(1)
+        captions = re.split(r'(?=Amendment of)', notes.strip())
+        captions = [' '.join(s.split()) for s in captions if s.strip()]
+        assert len(captions) == 2
         sections = list(re.finditer(r'(?:^|\n)\s*([12])\.\s+', body))
         assert [m.group(1) for m in sections] == ['1', '2']
         units = {}
         for i, m in enumerate(sections):
             stop = sections[i + 1].start() if i + 1 < len(sections) else len(body)
-            text = ' '.join(body[m.start():stop].split())
+            paragraphs = [' '.join(p.split()) for p in re.split(r'\n[ \t]*\n', body[m.start():stop]) if p.strip()]
             n = int(m.group(1))
+            assert len(paragraphs) == (10 if year == 2015 and n == 2 else 1)
+            text = '\n'.join([captions[i], *paragraphs])
             units[f'sec-{n:03d}'] = {'label': f'Section {n}', 'kind': 'sec', 'text': f'# Section {n}\n{text}\n'}
         acts.append({'slug': f'constitution-amendment-{year}', 'short': f'Act {number} of {year}',
             'title': f'Constitution (Amendment) Act {year}', 'url': url, 'first_law': None, 'earlier_laws': [],
@@ -45,7 +51,7 @@ def build(cache):
         'decisions': [
             'Acts 2 of 2015 and 1 of 2016 are represented as separate historical amendment instruments, each with two section files. They do not replace any Constitution version.',
             'In-force dates are 10 July 2015 and 11 January 2016, printed on each official Gazette cover. Section 1 of each instrument gives its short title and no special commencement; the publication default in Interpretation and General Clauses Act section 15 applies. The Parliament listing dates differ and are not used.',
-            'Section wording and numbers are preserved from the official PDF text layer; whitespace is collapsed. Gazette running headers, arrangement, long title, marginal captions, enacting formula and certification are excluded from section files.',
+            'Section wording, numbers and marginal captions are preserved from the official PDF text layer; marginal notes form part of the written law under Interpretation and General Clauses Act section 57(3). Each body paragraph or entity item has its own line. Only Gazette running headers, arrangement, long title, enacting formula and certification are outside these section files.',
         ], 'ai_use': ['GPT-6 wrote the parser and validation code, selected two official instruments and inspected their page images. It did not write or amend legal wording.']}
 
 

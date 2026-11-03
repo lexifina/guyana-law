@@ -107,7 +107,7 @@ The author of a commit is the law that made the change, with an e-mail address t
 
 - **No history before 2007.** The Act of 1980 as enacted is not online, nor are five amending laws (Acts 1, 12, 35 and 36 of 1991, Act 5 of 2003) and Order 38 of 1987, so the Constitution's history before the 2010 consolidation cannot be rebuilt. It starts at the oldest consolidation online.
 - **Act 24 of 2006** made article 61 apply to the Eighth Parliament as if "four months" stood for "three months", without changing its words. It predates the oldest version, so it has no commit.
-- **Marginal notes are not included.** Cap. 2:01, s. 57(3) makes marginal notes part of the written law, but the 2010 consolidation prints them run into the text, so they could not be extracted reliably for every version. Each file starts with `# Article N` instead.
+- **Marginal notes in the pre-existing revised chapters are omitted.** Cap. 2:01, s. 57(3) makes marginal notes part of the written law, but the 2010 consolidation prints them run into the text, so they could not be extracted reliably for every version. Each file starts with `# Article N` instead.
 - **Headings and repealed articles.** Part, Chapter and Title headings are left out. Articles printed only as a repeal note ("[Article 11 repealed by Act No. 10 of 2003]") have no file; repeal notes inside an article are kept as printed.
 - **Images.** The flag and the coat of arms in the Second Schedule are images and are not reproduced.
 - **The 2010 consolidation** is a PDF with irregular spacing; Lexifina's code splits words it prints run together only into words found in the later editions.
@@ -122,6 +122,8 @@ The author of a commit is the law that made the change, with an e-mail address t
 - **Matrimonial Causes Act and Wills Act: later Acts are missing.** Act 13 of 2024 (Matrimonial Causes (Amendment) Act 2024, Official Gazette 27 August 2024) and Act 21 of 2024 (Wills (Amendment) Act 2024, Official Gazette 27 December 2024) are printed only as scans with no text layer, and the Ministry still serves the 2012 editions. They have no commit: `matrimonial-causes/` and `wills/` are the 2012 text and are **not the law in force** on the points those Acts change. The Parliament index has gaps, so other chapters may also have later amendments that no source online shows.
 - **Not added yet:** the Summary Jurisdiction (Offences) Act (Cap. 8:02), whose PDFs have layout slips the reader does not yet repair; the Adoption of Children Act (Cap. 46:04), whose Schedule is a register table on a turned page and whose amending Act 8 of 2021 is a scan; and the Married Persons (Property) Act (Cap. 45:04), whose 2012 edition already lists Acts of 2014.
 - **Other acts.** These thirty-eight acts are represented. The two standalone Constitution amendment instruments preserve their original Gazette wording; their effects were already represented in the Constitution history. The Laws of Guyana publish only the current revised edition of each chapter, and the Parliament website holds Acts as passed from 1928 (with gaps), so other acts need the same edition-and-replay work.
+
+The standalone Constitution amendment instruments retain both official marginal captions. Each paragraph and each separately displayed entity item occupies its own line. A separate pending correction candidate restores the Interpretation Act section 57 caption for the 2022 edition range; other historical caption omissions remain incomplete.
 
 ## How it is built
 

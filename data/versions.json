@@ -558,6 +558,34 @@
      "sha256": "f7a950aeab2ce72c0152716a59a92015deeab158427673ea78b65d86307d18ae"
     }
    ]
+  },
+  {
+   "slug": "constitution-amendment-2015",
+   "short": "Act 2 of 2015",
+   "title": "Constitution (Amendment) Act 2015",
+   "url": "https://www.parliament.gov.gy/documents/acts/4034-4034-act_no._2_of_2015_(1).pdf",
+   "versions": [
+    {
+     "from": "2015-07-10",
+     "units": 2,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/4034-4034-act_no._2_of_2015_(1).pdf",
+     "sha256": "b71c7051fe58b3c4a8452e7b6f0b14ec01c64a02cb54c880751156638b3b0c8f"
+    }
+   ]
+  },
+  {
+   "slug": "constitution-amendment-2016",
+   "short": "Act 1 of 2016",
+   "title": "Constitution (Amendment) Act 2016",
+   "url": "https://www.parliament.gov.gy/documents/acts/5713-act_no._1_of_2016.pdf",
+   "versions": [
+    {
+     "from": "2016-01-11",
+     "units": 2,
+     "source_url": "https://www.parliament.gov.gy/documents/acts/5713-act_no._1_of_2016.pdf",
+     "sha256": "aeae4e07d45e9a2327dfdd24e2e39ccc915167336739c56bb5016caf38b26dd6"
+    }
+   ]
   }
  ]
 }
