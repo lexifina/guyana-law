@@ -44,6 +44,8 @@ It follows the shared design of [lexifina/global-law](https://github.com/lexifin
 | `bills-of-exchange/` | Bills of Exchange Act (Cap. 90:13, Act 13 of 1891) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
 | `traders-breach-of-contract/` | Traders (Breach of Contract) Act (Cap. 91:03, Act 4 of 1861) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
 | `termination-of-employment/` | Termination of Employment and Severance Pay Act (Cap. 96:01, Act 19 of 1997) | 1 | The revised edition L.R.O. 1/2012, which mola.gov.gy still serves as the current chapter |
+| `constitution-amendment-2015/` | Constitution (Amendment) Act 2015 (Act 2 of 2015) | 1 | Separate historical instrument, in force 10 July 2015; two sections |
+| `constitution-amendment-2016/` | Constitution (Amendment) Act 2016 (Act 1 of 2016) | 1 | Separate historical instrument, in force 11 January 2016; two sections |
 
 The Constitution's six versions:
 
@@ -119,13 +121,13 @@ The author of a commit is the law that made the change, with an e-mail address t
 - **Summary jurisdiction, family and land chapters (added 29 October 2026).** Caps. 3:05, 7:01 and 5:02 start at 31 December 2012 (L.R.O. 1/2012, read from the Internet Archive); their 2022 editions print the same text, so they have one version. Caps. 10:02, 11:09, 12:02, 12:24, 36:23, 45:02, 45:03, 46:05, 60:02, 61:01 and 62:01 are still served by the Ministry in the 2012 edition, so they have that one version. Caps. 3:04 and 5:01 start at 31 December 2022: their archived 2012 editions already list Acts of 2014 (13 of 2014 and 5 of 2014), so they are not the text of 31 December 2012 and are not used. Column headings of form tables set in small or turned type (Cap. 10:02 Forms 54-55, Cap. 7:01 Form 10, Cap. 11:09 Form 4) and the left heading of the scale in s. 38 of Cap. 10:02 are each one line, read left to right. The reviser's note printed after the Rent Restriction Act's Schedule is its own file, `rent-restriction/note-1.md`. Subsidiary legislation printed after each Act is not included.
 - **Matrimonial Causes Act and Wills Act: later Acts are missing.** Act 13 of 2024 (Matrimonial Causes (Amendment) Act 2024, Official Gazette 27 August 2024) and Act 21 of 2024 (Wills (Amendment) Act 2024, Official Gazette 27 December 2024) are printed only as scans with no text layer, and the Ministry still serves the 2012 editions. They have no commit: `matrimonial-causes/` and `wills/` are the 2012 text and are **not the law in force** on the points those Acts change. The Parliament index has gaps, so other chapters may also have later amendments that no source online shows.
 - **Not added yet:** the Summary Jurisdiction (Offences) Act (Cap. 8:02), whose PDFs have layout slips the reader does not yet repair; the Adoption of Children Act (Cap. 46:04), whose Schedule is a register table on a turned page and whose amending Act 8 of 2021 is a scan; and the Married Persons (Property) Act (Cap. 45:04), whose 2012 edition already lists Acts of 2014.
-- **Other acts.** Only these thirty-six acts are here so far. The Laws of Guyana publish only the current revised edition of each chapter, and the Parliament website holds Acts as passed from 1928 (with gaps), so other acts need the same edition-and-replay work.
+- **Other acts.** These thirty-eight acts are represented. The two standalone Constitution amendment instruments preserve their original Gazette wording; their effects were already represented in the Constitution history. The Laws of Guyana publish only the current revised edition of each chapter, and the Parliament website holds Acts as passed from 1928 (with gaps), so other acts need the same edition-and-replay work.
 
 ## How it is built
 
 Lexifina reads the sources listed here and records each act's dated versions, and the laws that made each change, in one corpus file. `tools/build.py` writes this repository from that file, and the same corpus always gives the same commit hashes; `REPRODUCE.md` gives the details and the checks. A model (Claude) wrote Lexifina's code; it wrote no legal text, and no model runs when the history is built.
 
-Lexifina's code reads each PDF's text layer with PyMuPDF and separates the text from running heads and marginal notes by position and font size; Lexifina's code splits it into provisions, normalises typesetting, replays the Acts and writes `corpus.json`; the shared builder `tools/build.py` turns that into the commits.
+Official editions and enacted instruments are represented as section files and dated versions. The history records the sources and the laws credited for each change.
 
 ## Sources
 
