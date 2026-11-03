@@ -47,12 +47,12 @@ Every word of law in this repository comes from these sources. Lexifina reads th
 | `summary-jurisdiction-magistrates` | Summary Jurisdiction (Magistrates) Act (Cap. 3:05) | 1 | 2012-12-31 to 2012-12-31 |
 | `summary-jurisdiction-petty-debt` | Summary Jurisdiction (Petty Debt) Act (Cap. 7:01) | 1 | 2012-12-31 to 2012-12-31 |
 | `summary-jurisdiction-procedure` | Summary Jurisdiction (Procedure) Act (Cap. 10:02) | 1 | 2012-12-31 to 2012-12-31 |
-| `domestic-violence` | Domestic Violence Act (Cap. 11:09) | 1 | 2012-12-31 to 2012-12-31 |
+| `domestic-violence` | Domestic Violence Act (Cap. 11:09) | 1 | 1996-12-31 to 1996-12-31 |
 | `wills` | Wills Act (Cap. 12:02) | 1 | 2012-12-31 to 2012-12-31 |
 | `family-dependants-provision` | Family and Dependants Provision Act (Cap. 12:24) | 1 | 2012-12-31 to 2012-12-31 |
 | `matrimonial-causes` | Matrimonial Causes Act (Cap. 45:02) | 1 | 2012-12-31 to 2012-12-31 |
 | `maintenance` | Maintenance Act (Cap. 45:03) | 1 | 2012-12-31 to 2012-12-31 |
-| `status-of-children` | Status of Children Act (Cap. 46:05) | 1 | 2012-12-31 to 2012-12-31 |
+| `status-of-children` | Status of Children Act (Cap. 46:05) | 1 | 2010-05-31 to 2010-05-31 |
 | `deeds-registry` | Deeds Registry Act (Cap. 5:01) | 1 | 2022-12-31 to 2022-12-31 |
 | `land-registry` | Land Registry Act (Cap. 5:02) | 1 | 2012-12-31 to 2012-12-31 |
 | `title-to-land` | Title to Land (Prescription and Limitation) Act (Cap. 60:02) | 1 | 2012-12-31 to 2012-12-31 |
@@ -71,7 +71,7 @@ Every word of law in this repository comes from these sources. Lexifina reads th
 | `constitution-amendment-2015` | Constitution (Amendment) Act 2015 | 1 | 2015-07-10 to 2015-07-10 |
 | `constitution-amendment-2016` | Constitution (Amendment) Act 2016 | 1 | 2016-01-11 to 2016-01-11 |
 
-The build made 47 commits:
+The build made 51 commits:
 
 | Commits | Kind |
 | ---: | --- |
@@ -95,13 +95,13 @@ When a law gives no date of its own, the default rule applies: Interpretation an
 
 `tools/build.py` turns the corpus into this history in one pass: one commit per law, on the day it took effect. The same corpus always gives the same commit hashes. `tools/check_repo.py` reads every version back from git and compares it with the corpus. `tools/on.py` shows the law as it stood on any date. The corpus format is described in `tools/SCHEMA.md`.
 
-- Corpus: sha256 `57fc703a8c41d321e3b7ba4c9d1afb5e8f3868dcbdb01f62b03a984214466f57` (5327637 bytes).
+- Corpus: sha256 `de89d19b8a027f454ca0fe63c03f5a77d562bfa4bb51ab95d5fecf0a46dcc0e8` (5429430 bytes).
 - Builder blob hashes (`git hash-object`): `build.py` `35388bee5aa05369f7da68f5a8fa015ea8d442b8`, `check.py` `5d719354ea4c62d240c93d2cae446307d81d9e81`, `on.py` `aff48cf1b68d50c7ba8f399ca32261871c301824`.
 - Python 3.14.4; git version 2.53.0.
 
 ## Checks
 
-47 versions of 38 acts read back from git on the day each took effect and on the day before: 0 mismatches. Trailers: 0 commits whose trailers git cannot parse. Health: 0 merge commits on main, 0 commit dates that go backwards, 0 commits dated after the build.
+Not yet run for this build.
 
 No second build of this corpus has been compared yet.
 
@@ -169,6 +169,9 @@ No second build of this corpus has been compared yet.
 - Acts 2 of 2015 and 1 of 2016 are represented as separate historical amendment instruments, each with two section files. They do not replace any Constitution version.
 - In-force dates are 10 July 2015 and 11 January 2016, printed on each official Gazette cover. Section 1 of each instrument gives its short title and no special commencement; the publication default in Interpretation and General Clauses Act section 15 applies. The Parliament listing dates differ and are not used.
 - Section wording, numbers and marginal captions are preserved from the official PDF text layer; marginal notes form part of the written law under Interpretation and General Clauses Act section 57(3). Each body paragraph or entity item has its own line. Only Gazette running headers, arrangement, long title, enacting formula and certification are outside these section files.
+- Domestic Violence Act (Cap. 11:09): source commencement 1996-12-31; [31ST DECEMBER, 1996], official PDF page 5, no amending Act listed. Replaces the inherited edition-cutoff date. Earlier published commits/tags are retained as historical records, not new source-date assertions.
+- Status of Children Act (Cap. 46:05): source commencement 2010-05-31; [31  MAY, 2010], official PDF page 5, no amending Act listed. Replaces the inherited edition-cutoff date. Earlier published commits/tags are retained as historical records, not new source-date assertions.
+- Marginal notes restored under Cap. 2:01 s.57(3): 42 Domestic Violence and 27 Status of Children section captions; section bodies unchanged. The source commencements remain 31 December 1996 and 31 May 2010.
 
 ## What AI did and did not do
 
@@ -188,3 +191,4 @@ Model use at data-build time:
 - Land chapters: Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote Lexifina's code, chose the chapters and page ranges and read the amending-law lists from the front pages (by word position, checked against the page); it did not write or alter any legal text.
 - Corpus part 85-commercial: Claude Code with Claude Opus 5.5 (claude-opus-5-5) wrote Lexifina's code, chose the chapters and page ranges and read the amending-law lists from the front pages (checked against the page text); it did not write or alter any legal text.
 - GPT-6 wrote the parser and validation code, selected two official instruments and inspected their page images. It did not write or amend legal wording.
+- GPT-6 prepared source-date metadata and validation code. Legal text is retained from the already independently reviewed caption corrections and unchanged published provisions.

@@ -1,6 +1,6 @@
 # Domestic Violence Act (Cap. 11:09)
 
-Domestic Violence Act · 1 versions, from 2012-12-31 (latest in force: 2012-12-31) · <https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970601.pdf>
+Domestic Violence Act · 1 versions, from 1996-12-31 (latest in force: 1996-12-31) · <https://www.mola.gov.gy/laws/Volume 4 Cap. 10.08 - 12.211696970601.pdf>
 
 | Provision | File | Changes | Last changed |
 | --- | --- | ---: | --- |

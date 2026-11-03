@@ -74,6 +74,13 @@
     "constitution-amendment-2016"
    ],
    "sha256": "f94a78ae85123ad8f85c56d90dc11c34dd30c5f8abd81fae111c3a3066a89223"
+  },
+  "94-marginal-notes-2026-11-04.json": {
+   "acts": [
+    "domestic-violence",
+    "status-of-children"
+   ],
+   "sha256": "37b3a183c423ca8730a226e4e1c675415424ecea43d9a7c3f1d1f42c4e41820b"
   }
  },
  "schema": 1

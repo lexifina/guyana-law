@@ -1,6 +1,6 @@
 # Status of Children Act (Cap. 46:05)
 
-Status of Children Act · 1 versions, from 2012-12-31 (latest in force: 2012-12-31) · <https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696827883.pdf>
+Status of Children Act · 1 versions, from 2010-05-31 (latest in force: 2010-05-31) · <https://www.mola.gov.gy/laws/Volume 9 Cap. 36.02 - 46.071696827883.pdf>
 
 | Provision | File | Changes | Last changed |
 | --- | --- | ---: | --- |
