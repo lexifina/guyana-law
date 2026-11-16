@@ -59,6 +59,7 @@ Each change is credited to the Act whose own text inserts exactly those words (`
 - Every word of the latest version of each chapter, the Constitution included, is in the PDF the Ministry of Legal Affairs serves today, and every word that PDF prints is in the repository, except what is left out on purpose (running heads, marginal notes, headings), as `tools/verify_chapters.py` checks. Every version carries the sha256 of the PDF it was read from.
 - The words the three Acts inserted in the Constitution were checked against the Gazette print.
 - No merge commits, nothing dated in the future, and every commit's trailers parse; corrections are appended as new commits.
+- [vulnerabilities/](vulnerabilities/): possible drafting mistakes in this law, found by global-law's detectors and checked by hand. Not run yet.
 
 ## What it does not show
 
@@ -81,6 +82,10 @@ Each change is credited to the Act whose own text inserts exactly those words (`
 See [`LICENSE`](LICENSE). Neither source states a licence; the texts are official legal texts of Guyana, reproduced with attribution, and their copyright status is not confirmed. Lexifina's arrangement, commit messages, tables and tools are CC0 1.0.
 
 No model wrote, translated or corrected legal text; the scripts were written by AI models (Claude Opus 5.5 and GPT-6), as [`REPRODUCE.md`](REPRODUCE.md) records.
+
+## Visualisations
+
+- [visualisations/](visualisations/): charts drawn from this repository. Not drawn yet.
 
 ## More
 
